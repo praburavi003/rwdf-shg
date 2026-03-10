@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RWDF NGO — மகளிர் சுய உதவி குழு</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;600;700&family=Noto+Serif+Tamil:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="RWDF NGO SHG Management">
+<meta name="theme-color" content="#C2185B">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RWDF SHG">
+<script>
+  window._useFallback = true;
+</script>
+
+<style>
+:root{
+  --rose:#C2185B;--rose2:#880E4F;--gold:#D4A017;
+  --cream:#FFF8F5;--green:#2E7D32;--green-bg:#E8F5E9;
+  --blue:#1565C0;--blue-bg:#E3F2FD;
+  --orange:#E65100;--orange-bg:#FFF3E0;
+  --red:#C62828;--red-bg:#FFEBEE;
+  --purple:#6A1B9A;--purple-bg:#F3E5F5;
+  --teal:#00695C;--teal-bg:#E0F2F1;
+  --purple:#6A1B9A;--purple-bg:#F3E5F5;--muted:#9E7090;
+  --border:#F0D0E0;--shadow:0 2px 16px rgba(194,24,91,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);font-family:'Noto Sans Tamil',sans-serif;color:var(--text);font-size:14px;}
+.hidden{display:none!important;}
+
+/* LOADING */
+#loadingScreen{position:fixed;inset:0;background:linear-gradient(135deg,#880E4F,#C2185B);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;color:#fff;}
+.spinner{width:50px;height:50px;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SETUP BANNER */
+#setupBanner{background:#FF6F00;color:#fff;padding:12px 20px;text-align:center;font-size:13px;font-weight:700;}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#880E4F,#C2185B);color:#fff;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(194,24,91,.35);position:sticky;top:0;z-index:200;}
+.hdr-left{display:flex;align-items:center;gap:12px;}
+.hdr-icon{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA000);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.hdr-title{font-family:'Noto Serif Tamil',serif;font-size:17px;font-weight:700;line-height:1.2;}
+.hdr-sub{font-size:10px;opacity:.8;letter-spacing:1px;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+
+/* NAV */
+.nav{display:flex;background:#fff;border-bottom:2px solid var(--border);overflow-x:auto;position:sticky;top:68px;z-index:100;}
+.nbtn{padding:10px 13px;border:none;border-bottom:3px solid transparent;background:none;font-family:'Noto Sans Tamil',sans-serif;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nbtn:hover{color:var(--rose);background:#FFF0F5;}
+.nbtn.active{color:var(--rose);border-bottom-color:var(--rose);font-weight:700;}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;background:linear-gradient(135deg,#880E4F,#C2185B,#E91E8C);display:flex;align-items:center;justify-content:center;padding:20px;}
+.login-box{background:#fff;border-radius:20px;padding:32px;max-width:370px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;}
+.login-icon{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA000);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px;}
+
+/* PAGES */
+.page{display:none;padding:16px;max-width:960px;margin:0 auto;animation:fi .3s ease;}
+.page.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARD */
+.card{background:#fff;border-radius:13px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--border);}
+.card-title{font-family:'Noto Serif Tamil',serif;font-size:15px;color:var(--rose2);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px;}
+.sc{background:#fff;border-radius:10px;padding:12px;box-shadow:var(--shadow);border:1px solid var(--border);text-align:center;}
+.sn{font-size:20px;font-weight:700;line-height:1.1;}
+.sl{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:500px){.fg{grid-template-columns:1fr;}}
+.ff{grid-column:1/-1;}
+.fl{font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:3px;}
+input,select,textarea{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-family:'Noto Sans Tamil',sans-serif;font-size:13px;color:var(--text);background:#fff;outline:none;transition:border .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--rose);}
+
+/* BUTTONS */
+.btn{padding:9px 18px;border-radius:7px;border:none;font-family:'Noto Sans Tamil',sans-serif;font-size:13px;cursor:pointer;font-weight:700;transition:all .2s;}
+.btn-rose{background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;}
+.btn-rose:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(194,24,91,.35);}
+.btn-green{background:linear-gradient(135deg,var(--green),#1B5E20);color:#fff;}
+.btn-blue{background:linear-gradient(135deg,var(--blue),#0D47A1);color:#fff;}
+.btn-outline{background:#fff;color:var(--rose);border:1.5px solid var(--rose);}
+.btn-sm{padding:4px 11px;font-size:11px;border-radius:5px;border:1.5px solid var(--rose);background:#fff;color:var(--rose);cursor:pointer;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;}
+.btn-sm-g{padding:4px 11px;font-size:11px;border-radius:5px;border:1.5px solid var(--green);background:#fff;color:var(--green);cursor:pointer;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;}
+.btn-sm-b{padding:4px 11px;font-size:11px;border-radius:5px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;}
+.btn-sm-r{padding:4px 11px;font-size:11px;border-radius:5px;border:1.5px solid var(--red);background:#fff;color:var(--red);cursor:pointer;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;}
+.flex-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.flex-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.flex-end{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;}
+
+/* TABLE */
+.tw{overflow-x:auto;border-radius:9px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;}
+thead{background:linear-gradient(135deg,#880E4F,#C2185B);color:#fff;}
+th{padding:9px 11px;text-align:left;font-size:11px;font-weight:600;white-space:nowrap;}
+td{padding:9px 11px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:#FFF8F5;}
+.tr-total td{background:#FCE4EC!important;font-weight:700;color:var(--rose2);}
+
+/* BADGE */
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;}
+
+/* MODAL */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:14px;}
+.modal-ov.open{display:flex;}
+.modal{background:#fff;border-radius:14px;padding:20px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.2);max-height:90vh;overflow-y:auto;}
+.modal-title{font-family:'Noto Serif Tamil',serif;font-size:16px;color:var(--rose2);margin-bottom:14px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;right:22px;padding:11px 18px;border-radius:9px;font-size:13px;font-weight:700;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.2);display:none;max-width:300px;}
+.toast.success{background:var(--green);color:#fff;}
+.toast.error{background:var(--red);color:#fff;}
+.toast.info{background:var(--blue);color:#fff;}
+
+/* GROUP CARDS */
+.grp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.grp-card{background:#fff;border-radius:11px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--border);cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.grp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(194,24,91,.2);}
+
+/* ACCOUNT ROWS */
+.acc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:7px;margin-bottom:5px;}
+.acc-income{background:var(--green-bg);border-left:4px solid var(--green);}
+.acc-expense{background:var(--red-bg);border-left:4px solid var(--red);}
+.acc-neutral{background:var(--blue-bg);border-left:4px solid var(--blue);}
+.acc-warn{background:var(--orange-bg);border-left:4px solid var(--orange);}
+
+/* SUB HEADER */
+.sub-hdr{background:#FCE4EC;border-bottom:1px solid var(--border);padding:7px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+
+/* BALANCE BOX */
+.balance-box{background:linear-gradient(135deg,var(--rose2),var(--rose));color:#fff;border-radius:11px;padding:18px;text-align:center;margin-top:10px;}
+
+/* LEDGER HEADER */
+.ldg-hdr{background:linear-gradient(135deg,#FCE4EC,#FFF8F5);border:1px solid var(--border);border-radius:11px;padding:14px;margin-bottom:12px;}
+.ldg-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:10px;}
+.ls{background:#fff;border-radius:9px;padding:10px;border:1px solid var(--border);text-align:center;}
+
+/* MEMBER PROFILE */
+.mem-profile{background:linear-gradient(135deg,#880E4F,#C2185B);color:#fff;border-radius:11px;padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;}
+.mem-avatar{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+
+/* GRID 2 */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:600px){.g2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loadingScreen">
+  <div class="spinner"></div>
+  <div style="font-family:'Noto Serif Tamil',serif;font-size:20px;">RWDF NGO</div>
+  <div style="font-size:12px;opacity:.8;margin-top:4px;">ஏற்றுகிறோம்...</div>
+</div>
+
+<!-- SETUP BANNER (shown when Firebase not configured) -->
+<div id="setupBanner" class="hidden">
+  ⚠️ Firebase config மாற்றவில்லை! firebase.google.com-ல் project உருவாக்கி config-ஐ மாற்றுங்கள்.
+</div>
+
+<div id="firebaseStatus" style="display:none;"></div>
+<div class="toast" id="toast"></div>
+
+<!-- LOGIN -->
+<div id="loginWrap" class="login-wrap hidden">
+  <div class="login-box">
+    <div class="login-icon">🌸</div>
+    <div style="font-family:'Noto Serif Tamil',serif;font-size:21px;color:var(--rose2);margin-bottom:3px;">RWDF NGO</div>
+    <div style="font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:20px;">RWDF WOMEN SHG MANAGEMENT</div>
+    <div id="loginErr" class="hidden" style="background:var(--red-bg);color:var(--red);padding:9px 12px;border-radius:7px;font-size:13px;margin-bottom:12px;border-left:4px solid var(--red);text-align:left;"></div>
+    <div style="text-align:left;margin-bottom:10px;"><label class="fl">பயனர் பெயர் (Username)</label><input id="loginUser" placeholder="admin" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div style="text-align:left;margin-bottom:18px;"><label class="fl">கடவுச்சொல் (Password)</label><input id="loginPass" type="password" placeholder="••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn btn-rose" style="width:100%;padding:12px;font-size:14px;" onclick="doLogin()">உள் நுழை / Login</button>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" class="hidden">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="hdr-icon">🌸</div>
+      <div><div class="hdr-title">RWDF NGO — மகளிர் சுய உதவி குழு</div><div class="hdr-sub">RWDF WOMEN SHG MANAGEMENT SYSTEM</div></div>
+    </div>
+    <div class="hdr-right">
+      <span id="curUser" style="font-size:12px;opacity:.85;"></span>
+      <button id="pwdBtn" class="hidden" onclick="openModal('changePwdModal')" style="padding:5px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;font-size:11px;cursor:pointer;font-family:'Noto Sans Tamil',sans-serif;">🔑 Password</button>
+      <button onclick="loadGroups()" style="padding:5px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:11px;cursor:pointer;font-family:'Noto Sans Tamil',sans-serif;">🔄</button>
+      <button onclick="doLogout()" style="padding:5px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:11px;cursor:pointer;font-family:'Noto Sans Tamil',sans-serif;">வெளியேறு</button>
+    </div>
+  </div>
+
+  <!-- GROUP LIST -->
+  <div id="groupListView">
+    <div style="padding:16px;max-width:960px;margin:0 auto;">
+      <div class="sg" id="groupStats"></div>
+      <div class="card">
+        <div class="flex-between">
+          <div class="card-title">🏘️ குழு பட்டியல் · All Groups</div>
+          <button class="btn btn-rose" id="addGroupBtn" onclick="openModal('addGroupModal')">+ புதிய குழு</button>
+        </div>
+        <input id="groupSearch" style="margin-bottom:12px;" placeholder="🔍 குழு பெயர் / ஊர் தேடுங்கள்..." oninput="filterGroups()">
+        <div class="grp-grid" id="groupGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP DETAIL -->
+  <div id="groupDetailView" class="hidden">
+    <div class="sub-hdr">
+      <button class="btn-sm" onclick="backToGroups()">← பட்டியல்</button>
+      <span id="detailName" style="font-family:'Noto Serif Tamil',serif;font-size:14px;color:var(--rose2);font-weight:700;"></span>
+      <span id="detailLoc" style="font-size:11px;color:var(--muted);"></span>
+      <span id="detailBank" style="font-size:11px;color:var(--blue);"></span>
+    </div>
+    <div class="nav" id="groupNav">
+      <button class="nbtn active" onclick="showTab('dashboard',this)">🏠 முகப்பு</button>
+      <button class="nbtn" onclick="showTab('meeting',this)">📋 கூட்ட பதிவு</button>
+      <button class="nbtn" onclick="showTab('daily',this)">📅 நாள் வசூல்</button>
+      <button class="nbtn" onclick="showTab('loans',this)">💳 கடன் பேரடு</button>
+      <button class="nbtn" onclick="showTab('savings',this)">📒 சேமிப்பு பேரடு</button>
+      <button class="nbtn" onclick="showTab('bloans',this)">🏦 வங்கி கடன்</button>
+      <button class="nbtn" onclick="showTab('bankaccount',this)">🏦 வங்கி கணக்கு</button>
+      <button class="nbtn" onclick="showTab('accounts',this)">📒 வரவு செலவு</button>
+    </div>
+    <div id="tab-dashboard"   class="page active"></div>
+    <div id="tab-meeting"     class="page"></div>
+    <div id="tab-daily"       class="page"></div>
+    <div id="tab-loans"       class="page"></div>
+    <div id="tab-savings"     class="page"></div>
+    <div id="tab-bloans"      class="page"></div>
+    <div id="tab-bankaccount" class="page"></div>
+    <div id="tab-members"     class="page"></div>
+    <div id="tab-accounts"    class="page"></div>
+  </div>
+</div>
+
+<!-- =================== MODALS =================== -->
+
+<!-- Change Password (Admin only) -->
+<div class="modal-ov" id="changePwdModal"><div class="modal">
+  <div class="modal-title">🔑 Password மாற்று (Admin Only)</div>
+  <div id="pwdUserList"></div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('changePwdModal')">மூடு</button></div>
+</div></div>
+
+<!-- Edit User Password -->
+<div class="modal-ov" id="editPwdModal"><div class="modal">
+  <div class="modal-title">🔑 Password மாற்று</div>
+  <div class="fg">
+    <div class="ff"><label class="fl">பயனர்</label><input id="ep_user" readonly style="background:#f5f5f5;"></div>
+    <div class="ff"><label class="fl">புதிய Password *</label><input id="ep_pwd" type="password" placeholder="புதிய கடவுச்சொல்"></div>
+    <div class="ff"><label class="fl">உறுதிப்படுத்து *</label><input id="ep_pwd2" type="password" placeholder="மீண்டும் உள்ளிடுங்கள்"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('editPwdModal')">ரத்து</button><button class="btn btn-rose" onclick="savePassword()">சேமி</button></div>
+</div></div>
+
+<!-- Add Group -->
+<div class="modal-ov" id="addGroupModal"><div class="modal">
+  <div class="modal-title">🏘️ புதிய குழு சேர்</div>
+  <div class="fg">
+    <div class="ff"><label class="fl">குழு பெயர் *</label><input id="g_name" placeholder="மகளிர் சுய உதவி குழு - 1"></div>
+    <div><label class="fl">இடம் / ஊர்</label><input id="g_location"></div>
+    <div><label class="fl">தலைவர் பெயர்</label><input id="g_leader"></div>
+    <div><label class="fl">தொலைபேசி</label><input id="g_phone" type="tel"></div>
+    <div><label class="fl">ஆரம்பித்த தேதி</label><input id="g_date" type="date"></div>
+    <div><label class="fl">வங்கி பெயர்</label><input id="g_bankname" placeholder="Indian Bank / SBI"></div>
+    <div><label class="fl">வங்கி கணக்கு எண்</label><input id="g_bankno"></div>
+    <div><label class="fl">ஆரம்ப இருப்பு ₹</label><input id="g_openbal" type="number" placeholder="0"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addGroupModal')">ரத்து</button><button class="btn btn-rose" onclick="addGroup()">சேர்</button></div>
+</div></div>
+
+<!-- Add Member -->
+<div class="modal-ov" id="addMemberModal"><div class="modal">
+  <div class="modal-title">👩 புதிய உறுப்பினர்</div>
+  <div class="fg">
+    <div><label class="fl">பெயர் *</label><input id="m_name" placeholder="உறுப்பினர் பெயர்"></div>
+    <div><label class="fl">தொலைபேசி *</label><input id="m_phone" type="tel" placeholder="9876543210"></div>
+    <div><label class="fl">சேர்ந்த தேதி</label><input id="m_date" type="date"></div>
+    <div><label class="fl">பிறந்த தேதி</label><input id="m_dob" type="date"></div>
+    <div class="ff"><label class="fl">முகவரி</label><input id="m_address" placeholder="வீடு, தெரு, ஊர்"></div>
+    <div><label class="fl">ஆதார் எண்</label><input id="m_aadhar" placeholder="1234 5678 9012" maxlength="14"></div>
+    <div><label class="fl">வங்கி கணக்கு எண்</label><input id="m_bank" placeholder="கணக்கு எண்"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addMemberModal')">ரத்து</button><button class="btn btn-rose" onclick="addMember()">சேர்</button></div>
+</div></div>
+
+<!-- Edit Member -->
+<div class="modal-ov" id="editMemberModal"><div class="modal">
+  <div class="modal-title">✏️ உறுப்பினர் திருத்து</div>
+  <input type="hidden" id="em_id">
+  <input type="hidden" id="em_gid">
+  <div class="fg">
+    <div><label class="fl">பெயர் *</label><input id="em_name" placeholder="உறுப்பினர் பெயர்"></div>
+    <div><label class="fl">தொலைபேசி *</label><input id="em_phone" type="tel" placeholder="9876543210"></div>
+    <div><label class="fl">சேர்ந்த தேதி</label><input id="em_date" type="date"></div>
+    <div><label class="fl">பிறந்த தேதி</label><input id="em_dob" type="date"></div>
+    <div class="ff"><label class="fl">முகவரி</label><input id="em_address" placeholder="வீடு, தெரு, ஊர்"></div>
+    <div><label class="fl">ஆதார் எண்</label><input id="em_aadhar" placeholder="1234 5678 9012" maxlength="14"></div>
+    <div><label class="fl">வங்கி கணக்கு எண்</label><input id="em_bank" placeholder="கணக்கு எண்"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('editMemberModal')">ரத்து</button><button class="btn btn-rose" onclick="updateMember()">சேமி</button></div>
+</div></div>
+
+<!-- Add Savings -->
+<div class="modal-ov" id="addSavingsModal"><div class="modal">
+  <div class="modal-title">💰 சேமிப்பு பதிவு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="s_member"></select></div>
+    <div><label class="fl">தேதி *</label><input id="s_date" type="date"></div>
+    <div><label class="fl">தொகை ₹ *</label><input id="s_amount" type="number"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="s_short" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">அபராதம் / Fine ₹</label><input id="s_fine" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">சந்தா / Subscription ₹</label><input id="s_sub" type="number" placeholder="0" value="0"></div>
+    <div class="ff"><label class="fl">அபராதம் / சந்தா விவரம்</label><input id="s_extra_desc" placeholder="காரணம்: தாமதம் / வருட சந்தா..."></div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="s_note"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addSavingsModal')">ரத்து</button><button class="btn btn-rose" onclick="addSavings()">சேமி</button></div>
+</div></div>
+
+<!-- Edit Savings -->
+<div class="modal-ov" id="editSavingsModal"><div class="modal">
+  <div class="modal-title">✏️ சேமிப்பு திருத்து</div>
+  <input type="hidden" id="esav_id">
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="esav_member"></select></div>
+    <div><label class="fl">தேதி *</label><input id="esav_date" type="date"></div>
+    <div><label class="fl">தொகை ₹ *</label><input id="esav_amount" type="number"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="esav_short" type="number" value="0"></div>
+    <div><label class="fl">அபராதம் / Fine ₹</label><input id="esav_fine" type="number" value="0"></div>
+    <div><label class="fl">சந்தா / Subscription ₹</label><input id="esav_sub" type="number" value="0"></div>
+    <div class="ff"><label class="fl">அபராதம் / சந்தா விவரம்</label><input id="esav_extra_desc"></div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="esav_note"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('editSavingsModal')">ரத்து</button><button class="btn btn-rose" onclick="updateSavings()">சேமி</button></div>
+</div></div>
+
+<!-- Add Internal Loan -->
+<div class="modal-ov" id="addILoanModal"><div class="modal">
+  <div class="modal-title">🤝 உள் கடன் வழங்கு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="il_member"></select></div>
+    <div><label class="fl">தேதி *</label><input id="il_date" type="date"></div>
+    <div><label class="fl">கடன் தொகை ₹ *</label><input id="il_amount" type="number"></div>
+    <div><label class="fl">வட்டி % (மாதம்)</label><input id="il_interest" type="number" value="2"></div>
+    <div><label class="fl">கடன் வகை *</label>
+      <select id="il_type">
+        <option value="direct">நேரடி கடன் (cash)</option>
+        <option value="from_bank">வங்கியில் இருந்து எடுத்து கடன்</option>
+      </select>
+    </div>
+    <div><label class="fl">கடன் காலம் (மாதங்கள்)</label><input id="il_months" type="number"></div>
+    <div class="ff"><label class="fl">நோக்கம்</label><input id="il_purpose"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addILoanModal')">ரத்து</button><button class="btn btn-rose" onclick="addILoan()">கடன் வழங்கு</button></div>
+</div></div>
+
+<!-- Edit Internal Loan -->
+<div class="modal-ov" id="editILoanModal"><div class="modal">
+  <div class="modal-title">✏️ உள் கடன் திருத்து</div>
+  <input type="hidden" id="eil_id">
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர்</label><select id="eil_member"></select></div>
+    <div><label class="fl">தேதி</label><input id="eil_date" type="date"></div>
+    <div><label class="fl">கடன் தொகை ₹</label><input id="eil_amount" type="number"></div>
+    <div><label class="fl">வட்டி %</label><input id="eil_interest" type="number"></div>
+    <div><label class="fl">கடன் வகை</label>
+      <select id="eil_type"><option value="direct">நேரடி கடன்</option><option value="from_bank">வங்கியில் இருந்து</option></select>
+    </div>
+    <div class="ff"><label class="fl">நோக்கம்</label><input id="eil_purpose"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('editILoanModal')">ரத்து</button><button class="btn btn-rose" onclick="updateILoan()">சேமி</button></div>
+</div></div>
+
+<!-- Add IL Repayment -->
+<div class="modal-ov" id="addIRepayModal"><div class="modal">
+  <div class="modal-title">💳 கடன் தவணை பதிவு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="ir_member" onchange="loadILoansForRepay()"></select></div>
+    <div><label class="fl">கடன் தேர்வு *</label><select id="ir_loan"></select></div>
+    <div><label class="fl">தேதி *</label><input id="ir_date" type="date"></div>
+    <div><label class="fl">மொத்த தொகை ₹ *</label><input id="ir_amount" type="number"></div>
+    <div><label class="fl">வட்டி ₹</label><input id="ir_interest" type="number" placeholder="0"></div>
+    <div><label class="fl">அசல் ₹</label><input id="ir_principal" type="number" placeholder="0"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="ir_short" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">அபராதம் / Fine ₹</label><input id="ir_fine" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">சந்தா / Subscription ₹</label><input id="ir_sub" type="number" placeholder="0" value="0"></div>
+    <div class="ff"><label class="fl">அபராதம் / சந்தா விவரம்</label><input id="ir_extra_desc" placeholder="காரணம்: தாமதம் / வருட சந்தா..."></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addIRepayModal')">ரத்து</button><button class="btn btn-rose" onclick="addIRepay()">பதிவு செய்</button></div>
+</div></div>
+
+<!-- Edit Repayment -->
+<div class="modal-ov" id="editIRepayModal"><div class="modal">
+  <div class="modal-title">✏️ தவணை திருத்து / Delete</div>
+  <input type="hidden" id="eir_id">
+  <input type="hidden" id="eir_gid">
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் மாற்று</label><select id="eir_member"></select></div>
+    <div><label class="fl">கடன் மாற்று</label><select id="eir_loan"></select></div>
+    <div><label class="fl">தேதி</label><input id="eir_date" type="date"></div>
+    <div><label class="fl">மொத்த தொகை ₹</label><input id="eir_amount" type="number"></div>
+    <div><label class="fl">வட்டி ₹</label><input id="eir_interest" type="number"></div>
+    <div><label class="fl">அசல் ₹</label><input id="eir_principal" type="number"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="eir_short" type="number"></div>
+    <div><label class="fl">அபராதம் / Fine ₹</label><input id="eir_fine" type="number" placeholder="0"></div>
+    <div><label class="fl">சந்தா / Subscription ₹</label><input id="eir_sub" type="number" placeholder="0"></div>
+    <div class="ff"><label class="fl">அபராதம் / சந்தா விவரம்</label><input id="eir_extra_desc"></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+    <span id="irepayDelBtn"></span>
+    <div class="flex-row">
+      <button class="btn btn-outline" onclick="closeModal('editIRepayModal')">ரத்து</button>
+      <button class="btn btn-rose" onclick="updateIRepay()">சேமி</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- Add Bank Loan -->
+<div class="modal-ov" id="addBLoanModal"><div class="modal">
+  <div class="modal-title">🏦 வங்கி கடன் பதிவு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="bl_member"></select></div>
+    <div><label class="fl">தேதி *</label><input id="bl_date" type="date"></div>
+    <div><label class="fl">வங்கி பெயர் *</label><input id="bl_bank" placeholder="SBI / Indian Bank"></div>
+    <div><label class="fl">கடன் தொகை ₹ *</label><input id="bl_amount" type="number"></div>
+    <div><label class="fl">வட்டி % (ஆண்டு)</label><input id="bl_interest" type="number"></div>
+    <div><label class="fl">கடன் காலம் (மாதங்கள்)</label><input id="bl_months" type="number"></div>
+    <div class="ff"><label class="fl">நோக்கம்</label><input id="bl_purpose"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addBLoanModal')">ரத்து</button><button class="btn btn-rose" onclick="addBLoan()">சேமி</button></div>
+</div></div>
+
+<!-- Add Bank Repayment -->
+<div class="modal-ov" id="addBRepayModal"><div class="modal">
+  <div class="modal-title">🏦 வங்கி தவணை பதிவு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="br_member" onchange="loadBLoansForRepay()"></select></div>
+    <div><label class="fl">கடன் தேர்வு *</label><select id="br_loan"></select></div>
+    <div><label class="fl">தேதி *</label><input id="br_date" type="date"></div>
+    <div><label class="fl">மொத்த தொகை ₹ *</label><input id="br_amount" type="number"></div>
+    <div><label class="fl">வட்டி ₹</label><input id="br_interest" type="number" placeholder="0"></div>
+    <div><label class="fl">அசல் ₹</label><input id="br_principal" type="number" placeholder="0"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addBRepayModal')">ரத்து</button><button class="btn btn-rose" onclick="addBRepay()">பதிவு செய்</button></div>
+</div></div>
+
+<!-- Add Bank Interest Income -->
+<div class="modal-ov" id="addBankIntModal"><div class="modal">
+  <div class="modal-title">💹 வங்கி வட்டி வருமானம்</div>
+  <div class="fg">
+    <div><label class="fl">தேதி *</label><input id="bi_date" type="date"></div>
+    <div><label class="fl">தொகை ₹ *</label><input id="bi_amount" type="number"></div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="bi_note" placeholder="காலாண்டு வட்டி..."></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addBankIntModal')">ரத்து</button><button class="btn btn-rose" onclick="addBankInterest()">சேமி</button></div>
+</div></div>
+
+<!-- Cash Flow Modal (விடு பணம், தொலைந்த பணம், எக்ஸ்ட்ரா) -->
+
+<!-- Member Profile Modal -->
+<div class="modal-ov" id="memberProfileModal"><div class="modal" style="max-width:700px;">
+  <div id="memberProfileContent"></div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('memberProfileModal')">மூடு</button></div>
+</div></div>
+
+<!-- Add Special Loan -->
+<div class="modal-ov" id="addSpLoanModal"><div class="modal">
+  <div class="modal-title">⭐ சிறப்பு கடன் வழங்கு</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="sl_member"></select></div>
+    <div><label class="fl">தேதி *</label><input id="sl_date" type="date"></div>
+    <div><label class="fl">கடன் தொகை ₹ *</label><input id="sl_amount" type="number"></div>
+    <div><label class="fl">வட்டி % (மாதம்)</label><input id="sl_interest" type="number" value="2"></div>
+    <div><label class="fl">கடன் காலம் (மாதங்கள்)</label><input id="sl_months" type="number"></div>
+    <div class="ff"><label class="fl">நோக்கம்</label><input id="sl_purpose" placeholder="திருமணம் / மருத்துவம்..."></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addSpLoanModal')">ரத்து</button><button class="btn btn-rose" onclick="addSpLoan()">கடன் வழங்கு</button></div>
+</div></div>
+
+<!-- Edit Special Loan -->
+<div class="modal-ov" id="editSpLoanModal"><div class="modal">
+  <div class="modal-title">✏️ சிறப்பு கடன் திருத்து</div>
+  <input type="hidden" id="esl_id">
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர்</label><select id="esl_member"></select></div>
+    <div><label class="fl">தேதி</label><input id="esl_date" type="date"></div>
+    <div><label class="fl">கடன் தொகை ₹</label><input id="esl_amount" type="number"></div>
+    <div><label class="fl">வட்டி %</label><input id="esl_interest" type="number"></div>
+    <div class="ff"><label class="fl">நோக்கம்</label><input id="esl_purpose"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('editSpLoanModal')">ரத்து</button><button class="btn btn-rose" onclick="updateSpLoan()">சேமி</button></div>
+</div></div>
+
+<!-- Add Special Loan Repayment -->
+<div class="modal-ov" id="addSpRepayModal"><div class="modal">
+  <div class="modal-title">⭐ சிறப்பு கடன் தவணை</div>
+  <div class="fg">
+    <div><label class="fl">உறுப்பினர் *</label><select id="sr_member" onchange="loadSpLoansForRepay()"></select></div>
+    <div><label class="fl">கடன் தேர்வு *</label><select id="sr_loan"></select></div>
+    <div><label class="fl">தேதி *</label><input id="sr_date" type="date"></div>
+    <div><label class="fl">மொத்த தொகை ₹ *</label><input id="sr_amount" type="number"></div>
+    <div><label class="fl">வட்டி ₹</label><input id="sr_interest" type="number" placeholder="0"></div>
+    <div><label class="fl">அசல் ₹</label><input id="sr_principal" type="number" placeholder="0"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="sr_short" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">அபராதம் ₹</label><input id="sr_fine" type="number" placeholder="0" value="0"></div>
+  </div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('addSpRepayModal')">ரத்து</button><button class="btn btn-rose" onclick="addSpRepay()">பதிவு செய்</button></div>
+</div></div>
+
+<!-- Edit Special Repayment -->
+<div class="modal-ov" id="editSpRepayModal"><div class="modal">
+  <div class="modal-title">✏️ சிறப்பு தவணை திருத்து / Delete</div>
+  <input type="hidden" id="esr_id">
+  <div class="fg">
+    <div><label class="fl">தேதி</label><input id="esr_date" type="date"></div>
+    <div><label class="fl">மொத்த தொகை ₹</label><input id="esr_amount" type="number"></div>
+    <div><label class="fl">வட்டி ₹</label><input id="esr_interest" type="number"></div>
+    <div><label class="fl">அசல் ₹</label><input id="esr_principal" type="number"></div>
+    <div><label class="fl">விடு பணம் ₹</label><input id="esr_short" type="number"></div>
+    <div><label class="fl">அபராதம் ₹</label><input id="esr_fine" type="number"></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+    <span id="sprepayDelBtn"></span>
+    <div class="flex-row">
+      <button class="btn btn-outline" onclick="closeModal('editSpRepayModal')">ரத்து</button>
+      <button class="btn btn-rose" onclick="updateSpRepay()">சேமி</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- Meeting Cash Summary Modal -->
+<div class="modal-ov" id="meetingSummaryModal"><div class="modal">
+  <div class="modal-title">💸 கூட்ட பண சுருக்கம்</div>
+  <input type="hidden" id="ms_gid">
+  <input type="hidden" id="ms_date">
+  <div style="background:var(--blue-bg);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--blue);">
+    இந்த கூட்டம் மொத்த வசூல்: <strong id="ms_total" style="font-size:18px;color:var(--rose2)"></strong>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:10px;">வசூல் செய்த பணம் எங்கே சென்றது என்று பதிவு செய்யுங்கள்:</div>
+  <div class="fg">
+    <div><label class="fl">🏦 வங்கிக்கு சென்ற தொகை ₹</label><input id="ms_bank" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">🤝 நேரடி கடனாக கொடுத்த தொகை ₹</label><input id="ms_loan" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">💵 கையிருப்பு (cash in hand) ₹</label><input id="ms_cash" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">💸 விடு பணம் (Short) ₹</label><input id="ms_short" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">⚠️ அபராதம் வசூல் ₹</label><input id="ms_fine" type="number" placeholder="0" value="0"></div>
+    <div><label class="fl">✅ எக்ஸ்ட்ரா வரவு ₹</label><input id="ms_extra" type="number" placeholder="0" value="0"></div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="ms_note" placeholder="தேவையான விவரம்..."></div>
+  </div>
+  <div id="ms_balance_warn" style="display:none;background:var(--orange-bg);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--orange);margin-bottom:8px;font-weight:700;"></div>
+  <div class="flex-end">
+    <button class="btn btn-outline" onclick="closeModal('meetingSummaryModal')">ரத்து</button>
+    <button class="btn btn-rose" onclick="saveMeetingSummary()">சேமி</button>
+  </div>
+</div></div>
+
+<!-- Loan Detail Popup -->
+<div class="modal-ov" id="loanDetailModal"><div class="modal" style="max-width:560px;">
+  <div class="modal-title">💳 கடன் விவரம்</div>
+  <div id="loanDetailContent"></div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('loanDetailModal')">மூடு</button></div>
+</div></div>
+
+<!-- Savings Detail Popup -->
+<div class="modal-ov" id="savingsDetailModal"><div class="modal" style="max-width:500px;">
+  <div class="modal-title">💰 சேமிப்பு விவரம்</div>
+  <div id="savingsDetailContent"></div>
+  <div class="flex-end"><button class="btn btn-outline" onclick="closeModal('savingsDetailModal')">மூடு</button></div>
+</div></div>
+
+
+<!-- Apply Previous Cash Modal -->
+<div class="modal-ov" id="applyPrevCashModal"><div class="modal">
+  <div class="modal-title">💵 முன்கூட்ட கையிருப்பு செலுத்துக</div>
+  <input type="hidden" id="apc_gid">
+  <input type="hidden" id="apc_date">
+  <div style="background:var(--blue-bg);border-radius:8px;padding:10px 14px;margin-bottom:14px;">
+    <div style="font-size:12px;color:var(--muted)">முன்கூட்ட மொத்த கையிருப்பு</div>
+    <div style="font-size:22px;font-weight:700;color:var(--blue)" id="apc_total_show"></div>
+  </div>
+  <div class="fg">
+    <div class="ff">
+      <label class="fl">இக்கூட்டத்தில் செலுத்திய தொகை ₹</label>
+      <input id="apc_amount" type="number" placeholder="0" oninput="calcApcBalance()">
+    </div>
+    <div class="ff">
+      <label class="fl">பயன்பாடு (எங்கே செலுத்தப்பட்டது)</label>
+      <select id="apc_dest">
+        <option value="bank">🏦 வங்கியில் சேர்க்கப்பட்டது</option>
+        <option value="loan">🤝 கடனாக வழங்கப்பட்டது</option>
+        <option value="expense">❌ செலவு செய்யப்பட்டது</option>
+        <option value="other">📝 பிற</option>
+      </select>
+    </div>
+    <div class="ff">
+      <div id="apc_balance_info" style="display:none;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;"></div>
+    </div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="apc_note" placeholder="விரிவான குறிப்பு"></div>
+  </div>
+  <div class="flex-end">
+    <button class="btn btn-outline" onclick="closeModal('applyPrevCashModal')">ரத்து</button>
+    <button class="btn btn-rose" onclick="saveApplyPrevCash()">✅ சேமி</button>
+  </div>
+</div></div>
+
+<!-- Daily Collection Modal -->
+<div class="modal-ov" id="addDailyDestModal"><div class="modal">
+  <div class="modal-title">📅 நாள் வசூல் — பணம் எங்கே சென்றது?</div>
+  <input type="hidden" id="dd_date">
+  <div style="padding:12px;background:var(--blue-bg);border-radius:8px;margin-bottom:14px;">
+    <div style="font-size:13px;color:var(--blue);font-weight:700;">📅 தேதி: <span id="dd_dateShow"></span></div>
+    <div style="font-size:13px;margin-top:4px;">💰 சேமிப்பு வசூல்: <strong id="dd_savAmt"></strong></div>
+    <div style="font-size:13px;">💳 கடன் வசூல்: <strong id="dd_repAmt"></strong></div>
+    <div style="font-size:15px;font-weight:700;color:var(--rose2);margin-top:6px;">மொத்தம்: <strong id="dd_totalAmt"></strong></div>
+  </div>
+  <div class="fg">
+    <div class="ff"><label class="fl">பணம் எங்கே சென்றது? *</label>
+      <select id="dd_dest">
+        <option value="bank">🏦 வங்கியில் செலுத்தப்பட்டது</option>
+        <option value="loan_given">🤝 கடனாக கொடுக்கப்பட்டது</option>
+        <option value="bank_and_loan">🏦+🤝 வங்கி & கடன் இரண்டும்</option>
+        <option value="cash_held">💵 கையிருப்பில் வைக்கப்பட்டது</option>
+      </select>
+    </div>
+    <div><label class="fl">🏦 வங்கியில் செலுத்திய தொகை ₹</label><input id="dd_bankAmt" type="number" placeholder="0" oninput="calcDailyBalance()"></div>
+    <div><label class="fl">🤝 கடனாக கொடுத்த தொகை ₹</label><input id="dd_loanAmt" type="number" placeholder="0" oninput="calcDailyBalance()"></div>
+    <div><label class="fl">💵 மீத கையிருப்பு ₹</label><input id="dd_cashLeft" type="number" placeholder="0" oninput="calcDailyBalance()"></div>
+    <div class="ff">
+      <div id="dd_balance_info" style="display:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;"></div>
+    </div>
+    <div class="ff"><label class="fl">குறிப்பு</label><input id="dd_note"></div>
+  </div>
+  <div class="flex-end">
+    <button class="btn btn-outline" onclick="closeModal('addDailyDestModal')">ரத்து</button>
+    <button class="btn btn-rose" onclick="saveDailyDest()">சேமி</button>
+  </div>
+</div></div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-ov" id="deleteConfirmModal"><div class="modal">
+  <div class="modal-title">🗑️ குழு நீக்கம்</div>
+  <div id="deleteConfirmMsg" style="padding:16px;background:var(--red-bg);border-radius:10px;color:var(--red);font-size:14px;font-weight:600;text-align:center;margin-bottom:16px;"></div>
+  <div style="font-size:13px;color:var(--muted);text-align:center;margin-bottom:16px;">இந்த குழுவின் அனைத்து data-வும் (உறுப்பினர்கள், சேமிப்பு, கடன்கள்) நிரந்தரமாக அழிந்துவிடும்!</div>
+  <input type="hidden" id="deleteConfirmGid">
+  <div style="display:flex;gap:10px;">
+    <button class="btn btn-outline" style="flex:1;" onclick="closeModal('deleteConfirmModal')">ரத்து</button>
+    <button class="btn" style="flex:1;background:var(--red);color:#fff;" onclick="confirmDeleteGroup()">✅ ஆம், Delete செய்</button>
+  </div>
+</div></div>
+
+<script>
+let currentUser = null;
+let allGroups = [];
+let groupDataCache = {};
+let editingPwdUserId = null;
+
+// ===== UTILS =====
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2);
+const fmt = n => '₹' + Number(n||0).toLocaleString('en-IN');
+const today = () => new Date().toISOString().split('T')[0];
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast ' + type; t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3500);
+}
+function showLoading(show) { document.getElementById('loadingScreen').style.display = show ? 'flex' : 'none'; }
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.querySelectorAll('#' + id + ' input[type=date]').forEach(d => { if (!d.value) d.value = today(); });
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-ov').forEach(ov => ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); }));
+
+// ===== FIREBASE HELPERS =====
+async function fbGet(col, docId) {
+  return await window._fbGet(col, docId);
+}
+async function fbSet(col, docId, data) {
+  await window._fbSet(col, docId, data);
+}
+async function fbGetAll(col) {
+  return await window._fbGetAll(col);
+}
+
+// ===== INIT =====
+async function init() {
+  showLoading(false);
+  document.getElementById('loginWrap').classList.remove('hidden');
+}
+
+// ===== SAFE STORAGE =====
+const _store = {};
+function sSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} _store[k] = v; }
+function sGet(k) { try { const v = localStorage.getItem(k); if (v) return v; } catch(e) {} return _store[k] || null; }
+
+// Fallback to localStorage if Firebase not configured
+function initFallback() {
+  window._useFallback = true;
+  document.getElementById('loginWrap').classList.remove('hidden');
+}
+
+// ===== USERS =====
+const DEFAULT_USERS = [
+  {id:'u1',name:'Admin',username:'admin',password:'rwdf123',role:'admin'},
+  {id:'u2',name:'ஊழியர் 1',username:'staff1',password:'staff111',role:'staff'},
+  {id:'u3',name:'ஊழியர் 2',username:'staff2',password:'staff222',role:'staff'},
+  {id:'u4',name:'ஊழியர் 3',username:'staff3',password:'staff333',role:'staff'},
+  {id:'u5',name:'ஊழியர் 4',username:'staff4',password:'staff444',role:'staff'}
+];
+async function getUsers() {
+  if (window._useFallback) {
+    try { const s = sGet('rwdf_users'); if (s) return JSON.parse(s); } catch(e) {}
+    return DEFAULT_USERS;
+  }
+  const doc = await fbGet('config', 'users');
+  return doc ? doc.users : DEFAULT_USERS;
+}
+async function saveUsers(users) {
+  if (window._useFallback) { sSet('rwdf_users', JSON.stringify(users)); return; }
+  await fbSet('config', 'users', { users });
+}
+
+// ===== LOGIN =====
+async function doLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  if (!u || !p) { showLoginError('பயனர் பெயர் & கடவுச்சொல் உள்ளிடுங்கள்!'); return; }
+  showLoading(true);
+  try {
+    const users = await getUsers();
+    const user = users.find(x => x.username === u && x.password === p);
+    if (user) {
+      currentUser = user;
+      document.getElementById('loginWrap').classList.add('hidden');
+      document.getElementById('mainApp').classList.remove('hidden');
+      document.getElementById('curUser').textContent = '👤 ' + user.name;
+      if (user.role === 'admin') {
+        document.getElementById('pwdBtn').classList.remove('hidden');
+      } else {
+        document.getElementById('pwdBtn').classList.add('hidden');
+      }
+      document.getElementById('addGroupBtn').classList.remove('hidden');
+      await loadGroups();
+    } else {
+      showLoginError('பயனர் பெயர் அல்லது கடவுச்சொல் தவறு!');
+    }
+  } catch(e) { showLoginError('பிழை: ' + e.message); }
+  showLoading(false);
+}
+function showLoginError(msg) {
+  const e = document.getElementById('loginErr');
+  e.textContent = msg; e.classList.remove('hidden');
+}
+function doLogout() {
+  currentUser = null; currentGroup = null; allGroups = []; groupDataCache = {};
+  document.getElementById('loginWrap').classList.remove('hidden');
+  document.getElementById('mainApp').classList.add('hidden');
+  document.getElementById('loginUser').value = ''; document.getElementById('loginPass').value = '';
+  document.getElementById('loginErr').classList.add('hidden');
+  document.getElementById('groupListView').classList.remove('hidden');
+  document.getElementById('groupDetailView').classList.add('hidden');
+}
+
+// ===== PASSWORD CHANGE (Admin only) =====
+async function openPwdManager() {
+  const users = await getUsers();
+  document.getElementById('pwdUserList').innerHTML = users.map(u => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border);">
+      <div><strong>${u.name}</strong> <span style="color:var(--muted);font-size:12px">(${u.username})</span></div>
+      <button class="btn-sm" onclick="openEditPwd('${u.id}','${u.username}')">Password மாற்று</button>
+    </div>`).join('');
+  openModal('changePwdModal');
+}
+function openEditPwd(uid, uname) {
+  editingPwdUserId = uid;
+  document.getElementById('ep_user').value = uname;
+  document.getElementById('ep_pwd').value = '';
+  document.getElementById('ep_pwd2').value = '';
+  openModal('editPwdModal');
+}
+async function savePassword() {
+  const pwd = document.getElementById('ep_pwd').value.trim();
+  const pwd2 = document.getElementById('ep_pwd2').value.trim();
+  if (!pwd) { showToast('புதிய password உள்ளிடுங்கள்!', 'error'); return; }
+  if (pwd !== pwd2) { showToast('Password பொருந்தவில்லை!', 'error'); return; }
+  if (pwd.length < 6) { showToast('குறைந்தது 6 எழுத்துகள் வேண்டும்!', 'error'); return; }
+  showLoading(true);
+  const users = await getUsers();
+  const idx = users.findIndex(u => u.id === editingPwdUserId);
+  if (idx >= 0) { users[idx].password = pwd; await saveUsers(users); }
+  showLoading(false);
+  closeModal('editPwdModal');
+  showToast('Password மாற்றப்பட்டது! ✅');
+}
+
+// ===== GROUPS =====
+async function loadGroups() {
+  showLoading(true);
+  try {
+    let all;
+    if (window._useFallback) {
+      all = JSON.parse(sGet('rwdf_groups') || '[]');
+    } else {
+      all = await fbGetAll('groups');
+      all.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+    }
+    // Admin: எல்லா குழுக்களும் (assignedTo இல்லாதவையும் சேர்த்து)
+    // Staff: தங்கள் குழுக்கள் மட்டும்
+    if (currentUser && currentUser.role === 'admin') {
+      allGroups = all;
+    } else {
+      allGroups = all.filter(g => !g.assignedTo || g.assignedTo === currentUser.username);
+    }
+    renderGroupStats(); renderGroupList();
+  } catch(e) { showToast('குழுக்கள் ஏற்றல் தோல்வி: ' + e.message, 'error'); }
+  showLoading(false);
+}
+function renderGroupStats() {
+  document.getElementById('groupStats').innerHTML = `
+    <div class="sc"><div class="sn" style="color:var(--rose)">${allGroups.length}</div><div class="sl">மொத்த குழுக்கள்</div></div>
+    <div class="sc"><div class="sn" style="color:var(--green)">${allGroups.length}</div><div class="sl">செயலில் உள்ளவை</div></div>
+    <div class="sc"><div class="sn" style="color:var(--blue)">${300 - allGroups.length}</div><div class="sl">மீதமுள்ள இடங்கள்</div></div>`;
+}
+function filterGroups() {
+  const q = (document.getElementById('groupSearch').value || '').toLowerCase();
+  const filtered = allGroups.filter(g => g.name.toLowerCase().includes(q) || (g.location||'').toLowerCase().includes(q));
+  renderGroupGrid(filtered);
+}
+function renderGroupList() { renderGroupGrid(allGroups); }
+function renderGroupGrid(list) {
+  const grid = document.getElementById('groupGrid');
+  if (!list.length) { grid.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted);grid-column:1/-1;">குழுக்கள் இல்லை</div>'; return; }
+  grid.innerHTML = list.map((g, i) => `
+    <div class="grp-card" onclick="openGroup('${g.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="background:linear-gradient(135deg,var(--rose2),var(--rose));color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">${allGroups.indexOf(g)+1}</div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span class="badge" style="background:var(--green-bg);color:var(--green);">செயலில்</span>
+          ${(currentUser && currentUser.role === 'admin') ? `<button class="btn-sm" style="background:var(--red);color:#fff;border:none;border-radius:5px;padding:3px 8px;cursor:pointer;font-size:11px;" onclick="event.stopPropagation();deleteGroup('${g.id}')">🗑️</button>` : ''}
+        </div>
+      </div>
+      <div style="font-family:'Noto Serif Tamil',serif;font-size:14px;color:var(--rose2);margin-bottom:3px;">${g.name}</div>
+      <div style="font-size:11px;color:var(--muted);">📍 ${g.location||'—'} &nbsp;👩 ${g.leader||'—'}</div>
+      ${g.bankname ? `<div style="font-size:11px;color:var(--blue);margin-top:2px;">🏦 ${g.bankname}</div>` : ''}
+      ${(currentUser && currentUser.role === 'admin' && g.assignedTo) ? `<div style="font-size:11px;color:var(--purple);margin-top:2px;">👤 ${g.assignedTo}</div>` : ''}
+      <div style="margin-top:8px;padding:5px;background:var(--cream);border-radius:5px;font-size:11px;color:var(--rose);text-align:center;font-weight:700;">திறக்க அழுத்துங்கள் →</div>
+    </div>`).join('');
+}
+async function deleteGroup(gid) {
+  const g = allGroups.find(x => x.id === gid);
+  if (!g) return;
+  document.getElementById('deleteConfirmGid').value = gid;
+  document.getElementById('deleteConfirmMsg').textContent = '"' + g.name + '" குழுவை நிரந்தரமாக Delete செய்வீர்களா?';
+  openModal('deleteConfirmModal');
+}
+async function confirmDeleteGroup() {
+  const gid = document.getElementById('deleteConfirmGid').value;
+  const g = allGroups.find(x => x.id === gid);
+  closeModal('deleteConfirmModal');
+  showLoading(true);
+  try {
+    if (window._useFallback) {
+      allGroups = allGroups.filter(x => x.id !== gid);
+      sSet('rwdf_groups', JSON.stringify(allGroups));
+      sSet('rwdf_gd_' + gid, null);
+    } else {
+      try { await window._fbDelete('groups', gid); } catch(e) { console.warn('groups delete:', e); }
+      try { await window._fbDelete('groupdata', gid); } catch(e) { console.warn('groupdata delete:', e); }
+      allGroups = allGroups.filter(x => x.id !== gid);
+    }
+    delete groupDataCache[gid];
+    renderGroupStats(); renderGroupList();
+    showToast((g ? '"' + g.name + '"' : 'குழு') + ' Delete செய்யப்பட்டது! 🗑️', 'info');
+  } catch(e) { showToast('Delete தோல்வி: ' + e.message, 'error'); }
+  showLoading(false);
+}
+async function addGroup() {
+  const name = document.getElementById('g_name').value.trim();
+  if (!name) { showToast('குழு பெயர் கட்டாயம்!', 'error'); return; }
+  if (allGroups.length >= 300) { showToast('அதிகபட்சம் 300 குழுக்கள்!', 'error'); return; }
+  showLoading(true);
+  const g = { id: uid(), name, location: document.getElementById('g_location').value, leader: document.getElementById('g_leader').value, phone: document.getElementById('g_phone').value, date: document.getElementById('g_date').value || today(), bankname: document.getElementById('g_bankname').value, bankno: document.getElementById('g_bankno').value, openingBalance: Number(document.getElementById('g_openbal').value||0), createdBy: currentUser.name, assignedTo: currentUser.username, createdAt: today() };
+  if (window._useFallback) {
+    allGroups.push(g); sSet('rwdf_groups', JSON.stringify(allGroups));
+  } else {
+    await fbSet('groups', g.id, g);
+    allGroups.push(g);
+  }
+  closeModal('addGroupModal');
+  ['g_name','g_location','g_leader','g_phone','g_date','g_bankname','g_bankno','g_openbal'].forEach(id => document.getElementById(id).value = '');
+  renderGroupStats(); renderGroupList();
+  showLoading(false);
+  showToast('குழு சேர்க்கப்பட்டது! 🎉');
+}
+
+// ===== GROUP DATA =====
+async function getGD(gid) {
+  if (groupDataCache[gid]) return groupDataCache[gid];
+  showLoading(true);
+  let d;
+  if (window._useFallback) {
+    d = JSON.parse(sGet('rwdf_gd_' + gid) || 'null');
+  } else {
+    d = await fbGet('groupdata', gid);
+  }
+  if (!d) d = {};
+  d.members = d.members || [];
+  d.savings = d.savings || [];
+  d.internalLoans = d.internalLoans || [];
+  d.repayments = d.repayments || [];
+  d.spLoans = d.spLoans || [];
+  d.spRepayments = d.spRepayments || [];
+  d.bankLoans = d.bankLoans || [];
+  d.bankRepayments = d.bankRepayments || [];
+  d.bankInterest = d.bankInterest || [];
+  d.cashflow = d.cashflow || [];
+  d.meetingSummary = d.meetingSummary || [];
+  groupDataCache[gid] = d;
+  showLoading(false);
+  return d;
+}
+async function saveGD(gid) {
+  const d = groupDataCache[gid];
+  if (!d) return;
+  if (window._useFallback) {
+    sSet('rwdf_gd_' + gid, JSON.stringify(d));
+  } else {
+    await fbSet('groupdata', gid, d);
+  }
+}
+
+// ===== OPEN GROUP =====
+async function openGroup(gid) {
+  currentGroup = allGroups.find(g => g.id === gid);
+  await getGD(gid);
+  document.getElementById('groupListView').classList.add('hidden');
+  document.getElementById('groupDetailView').classList.remove('hidden');
+  document.getElementById('detailName').textContent = currentGroup.name;
+  document.getElementById('detailLoc').textContent = '📍 ' + (currentGroup.location || '');
+  document.getElementById('detailBank').textContent = currentGroup.bankname ? '🏦 ' + currentGroup.bankname : '';
+  document.querySelectorAll('#groupNav .nbtn').forEach(b => b.classList.remove('active'));
+  document.querySelector('#groupNav .nbtn').classList.add('active');
+  document.querySelectorAll('[id^="tab-"]').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-dashboard').classList.add('active');
+  renderDash(gid);
+}
+function backToGroups() {
+  currentGroup = null;
+  document.getElementById('groupListView').classList.remove('hidden');
+  document.getElementById('groupDetailView').classList.add('hidden');
+}
+function showTab(id, btn) {
+  document.querySelectorAll('[id^="tab-"]').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#groupNav .nbtn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  const gid = currentGroup.id;
+  if (id === 'dashboard')   renderDash(gid);
+  if (id === 'meeting')     renderMeeting(gid);
+  if (id === 'bankaccount') renderBankAccount(gid);
+  if (id === 'members')     renderMembers(gid);
+  if (id === 'savings')     renderSavings(gid);
+  if (id === 'loans')       renderLoansLedger(gid);
+  if (id === 'sploans')     renderLoansLedger(gid);
+  if (id === 'bloans')      renderBLoans(gid);
+
+  if (id === 'daily')       renderDaily(gid);
+  if (id === 'accounts')    renderAccounts(gid);
+}
+
+// ===== HELPERS =====
+function getMN(gid, id) { const d = groupDataCache[gid]; const m = d?.members?.find(m => m.id === id); return m ? m.name : '—'; }
+function getLR(gid, lid, type = 'internal') {
+  const d = groupDataCache[gid];
+  const reps = type === 'internal' ? d.repayments : d.bankRepayments;
+  return (reps || []).filter(r => r.loanId === lid).reduce((a, r) => ({ total: a.total + Number(r.amount), interest: a.interest + Number(r.interest||0), principal: a.principal + Number(r.principal||0), short: a.short + Number(r.short||0) }), { total: 0, interest: 0, principal: 0, short: 0 });
+}
+function popMem(gid, ...ids) {
+  const d = groupDataCache[gid];
+  const opts = (d?.members||[]).map(m => `<option value="${m.id}">${m.name}</option>`).join('');
+  ids.forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = opts || '<option value="">உறுப்பினர் இல்லை</option>'; });
+}
+
+// ===== DASHBOARD =====
+function renderDash(gid) {
+  const d = groupDataCache[gid], g = currentGroup;
+  const ts = (d.savings||[]).reduce((a,s) => a + Number(s.amount), 0);
+  const ti = (d.repayments||[]).reduce((a,r) => a + Number(r.interest||0), 0) + (d.bankRepayments||[]).reduce((a,r) => a + Number(r.interest||0), 0) + (d.bankInterest||[]).reduce((a,x) => a + Number(x.amount), 0);
+  const tl = (d.internalLoans||[]).reduce((a,l) => a + Number(l.amount), 0);
+  const tr2 = (d.repayments||[]).reduce((a,r) => a + Number(r.principal||0), 0);
+  const bal = (g.openingBalance||0) + ts + ti + tr2 - tl;
+  const aIL = (d.internalLoans||[]).filter(l => { const r = getLR(gid, l.id); return Math.max(0, l.amount - r.principal) > 0; }).length;
+  const act = [
+    ...(d.savings||[]).map(s => ({ date: s.date, text: `${getMN(gid,s.memberId)} — சேமிப்பு ${fmt(s.amount)}`, c: 'var(--green)' })),
+    ...(d.repayments||[]).map(r => ({ date: r.date, text: `${getMN(gid,r.memberId)} — தவணை ${fmt(r.amount)}`, c: 'var(--blue)' })),
+    ...(d.internalLoans||[]).map(l => ({ date: l.date, text: `${getMN(gid,l.memberId)} — கடன் ${fmt(l.amount)}`, c: 'var(--orange)' })),
+  ].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 8);
+
+  document.getElementById('tab-dashboard').innerHTML = `
+    <div class="sg">
+      <div class="sc"><div class="sn" style="color:var(--rose)">${(d.members||[]).length}</div><div class="sl">👩 உறுப்பினர்கள்</div></div>
+      <div class="sc"><div class="sn" style="color:var(--green)">${fmt(ts)}</div><div class="sl">💰 சேமிப்பு</div></div>
+      <div class="sc"><div class="sn" style="color:var(--blue)">${aIL}</div><div class="sl">🤝 நடப்பு கடன்</div></div>
+      <div class="sc"><div class="sn" style="color:var(--gold)">${fmt(ti)}</div><div class="sl">💹 வட்டி</div></div>
+      <div class="sc"><div class="sn" style="color:var(--rose)">${fmt(bal)}</div><div class="sl">💎 இருப்பு</div></div>
+    </div>
+    <div class="card" style="margin-top:4px;">
+      <div class="flex-between" style="margin-bottom:12px;">
+        <div class="card-title">👩 உறுப்பினர்கள் (${(d.members||[]).length}/20)</div>
+        <button class="btn btn-rose" onclick="openAddMember()">+ புதிய உறுப்பினர்</button>
+      </div>
+      <div class="tw"><table><thead><tr><th>#</th><th>பெயர்</th><th>தொலைபேசி</th><th>சேர்ந்த தேதி</th><th>சேமிப்பு ₹</th><th>கடன் நிலுவை ₹</th><th>செயல்</th></tr></thead>
+      <tbody>${(d.members||[]).length ? (d.members||[]).map((m,i) => {
+        const mts = (d.savings||[]).filter(s=>s.memberId===m.id).reduce((a,s)=>a+Number(s.amount),0);
+        const mtbl = (d.internalLoans||[]).filter(l=>l.memberId===m.id).reduce((a,l)=>{ const r=getLR(gid,l.id); return a+Math.max(0,l.amount-r.principal); }, 0);
+        return `<tr>
+          <td>${i+1}</td>
+          <td><strong style="cursor:pointer;color:var(--rose);text-decoration:underline" onclick="showMemberProfile('${gid}','${m.id}')">${m.name}</strong></td>
+          <td>${m.phone}</td><td>${m.date||'—'}</td>
+          <td style="color:var(--green);font-weight:700">${fmt(mts)}</td>
+          <td style="color:${mtbl>0?'var(--red)':'var(--green)'};font-weight:700">${fmt(mtbl)}</td>
+          <td><div class="flex-row"><button class="btn-sm-b" onclick="showMemberProfile('${gid}','${m.id}')">விவரம்</button><button class="btn-sm" onclick="openEditMember('${gid}','${m.id}')">திருத்து</button></div></td>
+        </tr>`;
+      }).join('') : '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px">உறுப்பினர்கள் இல்லை — மேலே "+ புதிய உறுப்பினர்" சேர்க்கவும்</td></tr>'}</tbody>
+      </table></div>
+    </div>`;
+}
+
+// ===== MEETING REGISTER =====
+function renderMeeting(gid) {
+  const d = groupDataCache[gid];
+  const members = d.members || [];
+  const selDate = window._meetingDate || today();
+
+  // Helper functions
+  function memberSavBefore(mid, beforeDate) {
+    return (d.savings||[]).filter(s=>s.memberId===mid && s.date < beforeDate).reduce((a,s)=>a+Number(s.amount),0);
+  }
+  function memberSavOn(mid, onDate) {
+    return (d.savings||[]).filter(s=>s.memberId===mid && s.date===onDate).reduce((a,s)=>a+Number(s.amount),0);
+  }
+  function memberRepayOn(mid, onDate, arr) {
+    return (arr||[]).filter(r=>r.memberId===mid && r.date===onDate);
+  }
+  function loanBalance(mid, loans, reps) {
+    return (loans||[]).filter(l=>l.memberId===mid).reduce((a,l)=>{
+      const paid=(reps||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);
+      return a+Math.max(0,l.amount-paid);
+    },0);
+  }
+  function getActiveLoan(mid, loans, reps) {
+    return (loans||[]).filter(l=>l.memberId===mid).find(l=>{
+      const paid=(reps||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);
+      return Math.max(0,l.amount-paid)>0;
+    });
+  }
+
+  // Build member rows with inline input fields
+  const rows = members.map((m,i)=>{
+    const prevSav = memberSavBefore(m.id, selDate);
+    const thisSav = memberSavOn(m.id, selDate);
+
+    // Existing repayments on this date
+    const sangReps = memberRepayOn(m.id, selDate, d.repayments);
+    const spReps   = memberRepayOn(m.id, selDate, d.spRepayments);
+    const bReps    = memberRepayOn(m.id, selDate, d.bankRepayments);
+
+    const sangRepAmt = sangReps.reduce((a,r)=>a+Number(r.principal||0),0);
+    const sangIntAmt = sangReps.reduce((a,r)=>a+Number(r.interest||0),0);
+    const spRepAmt   = spReps.reduce((a,r)=>a+Number(r.principal||0),0);
+    const spIntAmt   = spReps.reduce((a,r)=>a+Number(r.interest||0),0);
+    const bRepAmt    = bReps.reduce((a,r)=>a+Number(r.principal||0),0);
+    const bIntAmt    = bReps.reduce((a,r)=>a+Number(r.interest||0),0);
+
+    const sangNil = loanBalance(m.id, d.internalLoans, d.repayments);
+    const spNil   = loanBalance(m.id, d.spLoans, d.spRepayments);
+    const bankNil = loanBalance(m.id, d.bankLoans, d.bankRepayments);
+
+    const hasSang = sangNil > 0 || sangRepAmt > 0;
+    const hasSp   = spNil > 0 || spRepAmt > 0;
+    const hasBank = bankNil > 0 || bRepAmt > 0;
+
+    // சந்தா / அபராதம் on this date (from savings record)
+    const mSavToday = (d.savings||[]).filter(s=>s.memberId===m.id && s.date===selDate);
+    const thisFine = mSavToday.reduce((a,s)=>a+Number(s.fine||0),0);
+    const thisSub  = mSavToday.reduce((a,s)=>a+Number(s.sub||0),0);
+
+    // Input style
+    const inp = `style="width:75px;padding:4px 5px;border:1.5px solid var(--border);border-radius:5px;font-size:11px;text-align:right;font-family:'Noto Sans Tamil',sans-serif;"`;
+    const saved = `style="color:var(--green);font-weight:700;font-size:12px;text-align:right"`;
+
+    return `<tr id="mrow_${m.id}">
+      <td style="font-weight:700;text-align:center;font-size:12px">${i+1}</td>
+      <td style="min-width:100px">
+        <strong style="color:var(--rose2);font-size:12px;cursor:pointer;text-decoration:underline"
+          onclick="showSavingsDetail('${gid}','${m.id}')">${m.name}</strong>
+      </td>
+
+      <!-- இந்த வார சேமிப்பு -->
+      <td style="text-align:right">
+        ${thisSav>0 ?
+          `<div style="color:var(--green);font-weight:700;font-size:13px">${fmt(thisSav)} ✅</div>
+           <button onclick="clearMSav('${gid}','${m.id}','${selDate}')" style="font-size:9px;color:var(--red);border:none;background:none;cursor:pointer">✖ நீக்கு</button>` :
+          `<input ${inp} id="sav_${m.id}" type="number" placeholder="0" onkeydown="if(event.key==='Enter')saveMRow('${gid}','${m.id}','${selDate}')">`
+        }
+      </td>
+
+      <!-- மொத்த சேமிப்பு -->
+      <td style="text-align:right;font-weight:700;font-size:13px;color:var(--green)">
+        ${fmt(prevSav+thisSav)}
+      </td>
+
+      <!-- சங்க கடன் - 3 columns: அசல், வட்டி, நிலுவை -->
+      <td style="text-align:right">
+        ${!hasSang ? `<span style="color:var(--muted)">—</span>` :
+          sangRepAmt>0 ? `<div style="color:var(--blue);font-weight:700">${fmt(sangRepAmt)} ✅</div><button onclick="clearMSangRep('${gid}','${m.id}','${selDate}')" style="font-size:9px;color:var(--red);border:none;background:none;cursor:pointer">✖</button>` :
+          `<input ${inp} id="sang_p_${m.id}" type="number" placeholder="அசல்">`
+        }
+      </td>
+      <td style="text-align:right">
+        ${!hasSang ? `<span style="color:var(--muted)">—</span>` :
+          sangIntAmt>0 ? `<div style="color:var(--gold);font-weight:700">${fmt(sangIntAmt)}</div>` :
+          `<input ${inp} id="sang_i_${m.id}" type="number" placeholder="வட்டி">`
+        }
+      </td>
+      <td style="text-align:right;font-weight:700;color:${sangNil>0?'var(--red)':'var(--muted)'}">
+        ${hasSang ? fmt(sangNil) : '—'}
+      </td>
+
+      <!-- சிறப்பு கடன் - 3 columns: அசல், வட்டி, நிலுவை -->
+      <td style="text-align:right">
+        ${!hasSp ? `<span style="color:var(--muted)">—</span>` :
+          spRepAmt>0 ? `<div style="color:var(--purple);font-weight:700">${fmt(spRepAmt)} ✅</div><button onclick="clearMSpRep('${gid}','${m.id}','${selDate}')" style="font-size:9px;color:var(--red);border:none;background:none;cursor:pointer">✖</button>` :
+          `<input ${inp} id="sp_p_${m.id}" type="number" placeholder="அசல்">`
+        }
+      </td>
+      <td style="text-align:right">
+        ${!hasSp ? `<span style="color:var(--muted)">—</span>` :
+          spIntAmt>0 ? `<div style="color:var(--gold);font-weight:700">${fmt(spIntAmt)}</div>` :
+          `<input ${inp} id="sp_i_${m.id}" type="number" placeholder="வட்டி">`
+        }
+      </td>
+      <td style="text-align:right;font-weight:700;color:${spNil>0?'var(--red)':'var(--muted)'}">
+        ${hasSp ? fmt(spNil) : '—'}
+      </td>
+
+      <!-- வங்கி கடன் - 3 columns: அசல், வட்டி, நிலுவை -->
+      <td style="text-align:right">
+        ${!hasBank ? `<span style="color:var(--muted)">—</span>` :
+          bRepAmt>0 ? `<div style="color:var(--blue);font-weight:700">${fmt(bRepAmt)} ✅</div>` :
+          `<input ${inp} id="bk_p_${m.id}" type="number" placeholder="அசல்">`
+        }
+      </td>
+      <td style="text-align:right">
+        ${!hasBank ? `<span style="color:var(--muted)">—</span>` :
+          bIntAmt>0 ? `<div style="color:var(--gold);font-weight:700">${fmt(bIntAmt)}</div>` :
+          `<input ${inp} id="bk_i_${m.id}" type="number" placeholder="வட்டி">`
+        }
+      </td>
+      <td style="text-align:right;font-weight:700;color:${bankNil>0?'var(--red)':'var(--muted)'}">
+        ${hasBank ? fmt(bankNil) : '—'}
+      </td>
+
+      <!-- சந்தா / அபராதம் -->
+      <td style="text-align:right">
+        ${(thisFine>0||thisSub>0) ?
+          `<div style="color:var(--purple);font-weight:700">${fmt(thisFine+thisSub)} ✅</div>
+           <div style="font-size:10px;color:var(--muted)">${thisFine>0?`அப: ${fmt(thisFine)}`:''}${thisSub>0?` சந்தா: ${fmt(thisSub)}`:''}</div>` :
+          `<input ${inp} id="fine_${m.id}" type="number" placeholder="அபராதம்" style="margin-bottom:3px">
+           <input ${inp} id="sub_${m.id}" type="number" placeholder="சந்தா">`
+        }
+      </td>
+
+      <td style="text-align:center">
+        <button class="btn-sm-g" onclick="saveMRow('${gid}','${m.id}','${selDate}')">✔ சேமி</button>
+      </td>
+    </tr>`;
+  });
+
+  // Totals
+  let totPrev=0, totThis=0, totSang=0, totSangI=0, totSp=0, totSpI=0, totBk=0, totBkI=0, totFine=0, totSub=0;
+  members.forEach(m=>{
+    totPrev += memberSavBefore(m.id, selDate);
+    totThis += memberSavOn(m.id, selDate);
+    memberRepayOn(m.id, selDate, d.repayments).forEach(r=>{totSang+=Number(r.principal||0);totSangI+=Number(r.interest||0);});
+    memberRepayOn(m.id, selDate, d.spRepayments).forEach(r=>{totSp+=Number(r.principal||0);totSpI+=Number(r.interest||0);});
+    memberRepayOn(m.id, selDate, d.bankRepayments).forEach(r=>{totBk+=Number(r.principal||0);totBkI+=Number(r.interest||0);});
+    (d.savings||[]).filter(s=>s.memberId===m.id&&s.date===selDate).forEach(s=>{totFine+=Number(s.fine||0);totSub+=Number(s.sub||0);});
+  });
+
+  // முன்கூட்ட கையிருப்பு — selDate-க்கு முந்தைய dates-ல் cashLeft உள்ளவை
+  const prevCashEntries = (d.dailyDest||[]).filter(x => x.date < selDate && Number(x.cashLeft||0) > 0);
+  const prevCashTotal   = prevCashEntries.reduce((a,x)=>a+Number(x.cashLeft),0);
+  // இக்கூட்டத்தில் முன்கையிருப்பிலிருந்து apply செய்தது
+  const thisDateDest    = (d.dailyDest||[]).find(x=>x.date===selDate);
+  const appliedPrevCash = Number(thisDateDest?.appliedPrevCash||0);
+
+  document.getElementById('tab-meeting').innerHTML = `
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">📋 கூட்ட பதிவு — நேரடி Entry</div>
+        <div class="flex-row">
+          <input type="date" id="meetDatePicker" value="${selDate}" onchange="window._meetingDate=this.value;renderMeeting('${gid}')" style="padding:6px 10px;border:1.5px solid var(--rose);border-radius:7px;font-family:'Noto Sans Tamil',sans-serif;font-size:13px;">
+          <button class="btn btn-rose" onclick="saveAllMeeting('${gid}','${selDate}')">💾 எல்லாவற்றையும் சேமி</button>
+        </div>
+      </div>
+
+      <!-- முன்கூட்ட கையிருப்பு banner -->
+      ${prevCashTotal > 0 ? `
+      <div style="background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:10px;padding:12px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:2px;">💵 முன்கூட்ட கையிருப்பு உள்ளது</div>
+          <div style="font-size:11px;color:var(--muted);">
+            ${prevCashEntries.map(x=>`${x.date}: ₹${fmt(x.cashLeft)}`).join(' &nbsp;|&nbsp; ')}
+          </div>
+          <div style="font-size:14px;font-weight:700;color:var(--blue);margin-top:4px;">மொத்தம்: ₹${fmt(prevCashTotal)}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+          ${appliedPrevCash > 0 ? `
+            <div style="background:#e3f2fd;border-radius:7px;padding:6px 12px;font-size:13px;color:var(--blue);font-weight:700;">✅ ₹${fmt(appliedPrevCash)} இக்கூட்டத்தில் செலுத்தப்பட்டது</div>
+            <div style="font-size:12px;color:var(--green);font-weight:700;">மீத கையிருப்பு: ₹${fmt(prevCashTotal - appliedPrevCash)}</div>
+            <button class="btn-sm" onclick="openApplyPrevCash('${gid}','${selDate}',${prevCashTotal},${appliedPrevCash})">✏️ திருத்து</button>
+          ` : `
+            <button class="btn" style="background:var(--blue);color:#fff;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;" onclick="openApplyPrevCash('${gid}','${selDate}',${prevCashTotal},0)">💵 இக்கூட்டத்தில் செலுத்து</button>
+          `}
+        </div>
+      </div>` : ''}
+
+      <!-- Summary -->
+      <div class="sg" style="margin-bottom:12px;">
+        <div class="sc"><div class="sn" style="color:var(--green)">${fmt(totThis)}</div><div class="sl">இந்த வார சேமிப்பு</div></div>
+        <div class="sc"><div class="sn" style="color:var(--blue)">${fmt(totSang)}</div><div class="sl">சங்க கடன் வசூல்</div></div>
+        <div class="sc"><div class="sn" style="color:var(--gold)">${fmt(totSangI)}</div><div class="sl">சங்க வட்டி</div></div>
+        <div class="sc"><div class="sn" style="color:var(--purple)">${fmt(totSp)}</div><div class="sl">சிறப்பு கடன் வசூல்</div></div>
+        <div class="sc"><div class="sn" style="color:var(--teal)">${fmt(totBk)}</div><div class="sl">வங்கி கடன் வசூல்</div></div>
+        <div class="sc"><div class="sn" style="color:var(--rose)">${fmt(totThis+totSang+totSangI+totSp+totSpI+totBk+totBkI)}</div><div class="sl">மொத்த வசூல்</div></div>
+      </div>
+
+      ${members.length ? `
+      <div class="tw">
+        <table>
+          <thead>
+            <tr style="background:linear-gradient(135deg,#880E4F,#C2185B)">
+              <th rowspan="2">#</th>
+              <th rowspan="2">பெயர்</th>
+              <th colspan="2" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">💰 சேமிப்பு</th>
+              <th colspan="3" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">🤝 சங்க கடன்</th>
+              <th colspan="3" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">⭐ சிறப்பு கடன்</th>
+              <th colspan="3" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">🏦 வங்கி கடன்</th>
+              <th rowspan="2" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">⚠️ சந்தா/<br>அபராதம்</th>
+              <th rowspan="2" style="border-left:2px solid rgba(255,255,255,0.3)">செயல்</th>
+            </tr>
+            <tr style="background:#A01545">
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">இந்த வார ₹</th>
+              <th style="text-align:right">மொத்த சேமிப்பு ₹</th>
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">அசல் ₹</th>
+              <th style="text-align:right">வட்டி ₹</th>
+              <th style="text-align:right">நிலுவை ₹</th>
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">அசல் ₹</th>
+              <th style="text-align:right">வட்டி ₹</th>
+              <th style="text-align:right">நிலுவை ₹</th>
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">அசல் ₹</th>
+              <th style="text-align:right">வட்டி ₹</th>
+              <th style="text-align:right">நிலுவை ₹</th>
+            </tr>
+          </thead>
+          <tbody>${rows.join('')}</tbody>
+          <tfoot>
+            <tr class="tr-total">
+              <td colspan="2">மொத்தம்</td>
+              <td style="text-align:right;color:var(--green)">${fmt(totThis)}</td>
+              <td style="text-align:right;color:var(--green)">${fmt(totPrev+totThis)}</td>
+              <td style="text-align:right">${fmt(totSang)}</td>
+              <td style="text-align:right;color:var(--gold)">${fmt(totSangI)}</td>
+              <td style="text-align:right;color:var(--red)">${fmt(members.reduce((a,m)=>a+loanBalance(m.id,d.internalLoans,d.repayments),0))}</td>
+              <td style="text-align:right">${fmt(totSp)}</td>
+              <td style="text-align:right;color:var(--gold)">${fmt(totSpI)}</td>
+              <td style="text-align:right;color:var(--red)">${fmt(members.reduce((a,m)=>a+loanBalance(m.id,d.spLoans,d.spRepayments),0))}</td>
+              <td style="text-align:right">${fmt(totBk)}</td>
+              <td style="text-align:right;color:var(--gold)">${fmt(totBkI)}</td>
+              <td style="text-align:right;color:var(--red)">${fmt(members.reduce((a,m)=>a+loanBalance(m.id,d.bankLoans,d.bankRepayments),0))}</td>
+              <td style="text-align:right;color:var(--purple)">${fmt(totFine)}</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>` : '<div style="text-align:center;color:var(--muted);padding:40px">முதலில் உறுப்பினர்கள் சேர்க்கவும்</div>'}
+    </div>
+    `;
+}
+
+
+// Save single member row
+async function saveMRow(gid, mid, date) {
+  const d = groupDataCache[gid];
+
+  // Savings
+  const savEl  = document.getElementById('sav_'+mid);
+  const fineEl = document.getElementById('fine_'+mid);
+  const subEl  = document.getElementById('sub_'+mid);
+  const savAmt  = Number(savEl?.value||0);
+  const fineAmt = Number(fineEl?.value||0);
+  const subAmt  = Number(subEl?.value||0);
+  if (savAmt > 0 || fineAmt > 0 || subAmt > 0) {
+    d.savings.push({id:uid(), memberId:mid, date, amount:savAmt, mode:'cash', short:0, fine:fineAmt, sub:subAmt, extraDesc:'', note:'கூட்ட பதிவு'});
+  }
+
+  // Sang repayment
+  const sangP = document.getElementById('sang_p_'+mid);
+  const sangI = document.getElementById('sang_i_'+mid);
+  if (sangP && (Number(sangP.value)>0 || Number(sangI?.value||0)>0)) {
+    const loan = (d.internalLoans||[]).filter(l=>l.memberId===mid).find(l=>{
+      const paid=(d.repayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);
+      return Math.max(0,l.amount-paid)>0;
+    });
+    if (loan) {
+      const p=Number(sangP.value||0), i2=Number(sangI?.value||0);
+      d.repayments.push({id:uid(), memberId:mid, loanId:loan.id, date, amount:p+i2, principal:p, interest:i2, short:0, fine:0, sub:0, extraDesc:'', note:'கூட்ட பதிவு'});
+    }
+  }
+
+  // Special repayment
+  const spP = document.getElementById('sp_p_'+mid);
+  const spI = document.getElementById('sp_i_'+mid);
+  if (spP && (Number(spP.value)>0 || Number(spI?.value||0)>0)) {
+    const loan = (d.spLoans||[]).filter(l=>l.memberId===mid).find(l=>{
+      const paid=(d.spRepayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);
+      return Math.max(0,l.amount-paid)>0;
+    });
+    if (loan) {
+      const p=Number(spP.value||0), i2=Number(spI?.value||0);
+      d.spRepayments.push({id:uid(), memberId:mid, loanId:loan.id, date, amount:p+i2, principal:p, interest:i2, short:0, fine:0});
+    }
+  }
+
+  // Bank repayment
+  const bkP = document.getElementById('bk_p_'+mid);
+  const bkI = document.getElementById('bk_i_'+mid);
+  if (bkP && (Number(bkP.value)>0 || Number(bkI?.value||0)>0)) {
+    const loan = (d.bankLoans||[]).filter(l=>l.memberId===mid).find(l=>{
+      const paid=(d.bankRepayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);
+      return Math.max(0,l.amount-paid)>0;
+    });
+    if (loan) {
+      const p=Number(bkP.value||0), i2=Number(bkI?.value||0);
+      d.bankRepayments.push({id:uid(), memberId:mid, loanId:loan.id, date, amount:p+i2, principal:p, interest:i2});
+    }
+  }
+
+  await saveGD(gid);
+  showToast('சேமிக்கப்பட்டது! ✅');
+  renderMeeting(gid);
+}
+
+// Save all rows at once
+async function saveAllMeeting(gid, date) {
+  const d = groupDataCache[gid];
+  let saved = 0;
+  for (const m of (d.members||[])) {
+    const savEl = document.getElementById('sav_'+m.id);
+    const sangP = document.getElementById('sang_p_'+m.id);
+    const sangI = document.getElementById('sang_i_'+m.id);
+    const spP   = document.getElementById('sp_p_'+m.id);
+    const spI   = document.getElementById('sp_i_'+m.id);
+    const bkP   = document.getElementById('bk_p_'+m.id);
+    const bkI   = document.getElementById('bk_i_'+m.id);
+    let hasEntry = false;
+
+    if (savEl && Number(savEl.value)>0) {
+      d.savings.push({id:uid(), memberId:m.id, date, amount:Number(savEl.value), mode:'cash', short:0, fine:0, sub:0, extraDesc:'', note:'கூட்ட பதிவு'});
+      hasEntry=true;
+    }
+    if (sangP && (Number(sangP.value)>0 || Number(sangI?.value||0)>0)) {
+      const loan=(d.internalLoans||[]).filter(l=>l.memberId===m.id).find(l=>{const paid=(d.repayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);return Math.max(0,l.amount-paid)>0;});
+      if (loan){const p=Number(sangP.value||0),i2=Number(sangI?.value||0);d.repayments.push({id:uid(),memberId:m.id,loanId:loan.id,date,amount:p+i2,principal:p,interest:i2,short:0,fine:0,sub:0,extraDesc:'',note:'கூட்ட பதிவு'});hasEntry=true;}
+    }
+    if (spP && (Number(spP.value)>0 || Number(spI?.value||0)>0)) {
+      const loan=(d.spLoans||[]).filter(l=>l.memberId===m.id).find(l=>{const paid=(d.spRepayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);return Math.max(0,l.amount-paid)>0;});
+      if (loan){const p=Number(spP.value||0),i2=Number(spI?.value||0);d.spRepayments.push({id:uid(),memberId:m.id,loanId:loan.id,date,amount:p+i2,principal:p,interest:i2,short:0,fine:0});hasEntry=true;}
+    }
+    if (bkP && (Number(bkP.value)>0 || Number(bkI?.value||0)>0)) {
+      const loan=(d.bankLoans||[]).filter(l=>l.memberId===m.id).find(l=>{const paid=(d.bankRepayments||[]).filter(r=>r.loanId===l.id).reduce((x,r)=>x+Number(r.principal||0),0);return Math.max(0,l.amount-paid)>0;});
+      if (loan){const p=Number(bkP.value||0),i2=Number(bkI?.value||0);d.bankRepayments.push({id:uid(),memberId:m.id,loanId:loan.id,date,amount:p+i2,principal:p,interest:i2});hasEntry=true;}
+    }
+    if (hasEntry) saved++;
+  }
+  await saveGD(gid);
+  showToast(`${saved} உறுப்பினர் பதிவுகள் சேமிக்கப்பட்டன! ✅`);
+  renderMeeting(gid);
+}
+
+// Show meeting summary modal
+function openMeetingSummary(gid, date, total) {
+  const d = groupDataCache[gid];
+  const existing = (d.meetingSummary||[]).find(x=>x.date===date);
+  document.getElementById('ms_gid').value = gid;
+  document.getElementById('ms_date').value = date;
+  document.getElementById('ms_total').textContent = fmt(total);
+  document.getElementById('ms_bank').value  = existing?.bankAmt  || 0;
+  document.getElementById('ms_loan').value  = existing?.loanAmt  || 0;
+  document.getElementById('ms_cash').value  = existing?.cashHeld || 0;
+  document.getElementById('ms_short').value = existing?.shortAmt || 0;
+  document.getElementById('ms_fine').value  = existing?.fineAmt  || 0;
+  document.getElementById('ms_extra').value = existing?.extraAmt || 0;
+  document.getElementById('ms_note').value  = existing?.note     || '';
+  document.getElementById('ms_balance_warn').style.display = 'none';
+  // Live balance check
+  ['ms_bank','ms_loan','ms_cash','ms_short','ms_fine','ms_extra'].forEach(id=>{
+    document.getElementById(id).oninput = () => {
+      const entered = ['ms_bank','ms_loan','ms_cash'].reduce((a,i)=>a+Number(document.getElementById(i).value||0),0);
+      const diff = total - entered + Number(document.getElementById('ms_fine').value||0) + Number(document.getElementById('ms_extra').value||0) - Number(document.getElementById('ms_short').value||0);
+      const warn = document.getElementById('ms_balance_warn');
+      if (Math.abs(diff) > 1) {
+        warn.style.display='block';
+        warn.textContent = diff > 0 ? `⚠️ இன்னும் ₹${fmt(diff)} கணக்கில் போடவில்லை` : `⚠️ ₹${fmt(Math.abs(diff))} அதிகமாக உள்ளது`;
+      } else { warn.style.display='none'; }
+    };
+  });
+  openModal('meetingSummaryModal');
+}
+
+async function saveMeetingSummary() {
+  const gid  = document.getElementById('ms_gid').value;
+  const date = document.getElementById('ms_date').value;
+  const d    = groupDataCache[gid];
+  d.meetingSummary = (d.meetingSummary||[]).filter(x=>x.date!==date);
+  d.meetingSummary.push({
+    date,
+    bankAmt  : Number(document.getElementById('ms_bank').value  || 0),
+    loanAmt  : Number(document.getElementById('ms_loan').value  || 0),
+    cashHeld : Number(document.getElementById('ms_cash').value  || 0),
+    shortAmt : Number(document.getElementById('ms_short').value || 0),
+    fineAmt  : Number(document.getElementById('ms_fine').value  || 0),
+    extraAmt : Number(document.getElementById('ms_extra').value || 0),
+    note     : document.getElementById('ms_note').value,
+  });
+  await saveGD(gid);
+  closeModal('meetingSummaryModal');
+  renderMeeting(gid);
+  showToast('பண சுருக்கம் சேமிக்கப்பட்டது! ✅');
+}
+
+// Show savings detail popup
+function showSavingsDetail(gid, mid) {
+  const d = groupDataCache[gid];
+  const member = (d.members||[]).find(m=>m.id===mid);
+  const mSav = (d.savings||[]).filter(s=>s.memberId===mid).sort((a,b)=>a.date.localeCompare(b.date));
+  const total = mSav.reduce((a,s)=>a+Number(s.amount),0);
+  let running = 0;
+  const rows = mSav.map(s=>{
+    running += Number(s.amount);
+    return `<tr>
+      <td>${s.date}</td>
+      <td style="color:var(--green);font-weight:700;text-align:right">${fmt(s.amount)}</td>
+      <td style="color:var(--blue);text-align:right">${fmt(running)}</td>
+      ${Number(s.short||0)>0?`<td style="color:var(--orange)">${fmt(s.short)}</td>`:`<td style="color:var(--muted)">—</td>`}
+      ${Number(s.fine||0)>0?`<td style="color:var(--purple)">${fmt(s.fine)}</td>`:`<td style="color:var(--muted)">—</td>`}
+      <td><button class="btn-sm" onclick="closeModal('savingsDetailModal');openEditSav('${gid}','${s.id}')">திருத்து</button></td>
+    </tr>`;
+  });
+  document.getElementById('savingsDetailContent').innerHTML = `
+    <div style="background:linear-gradient(135deg,#880E4F,#C2185B);color:#fff;border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;">👩</div>
+      <div>
+        <div style="font-size:16px;font-weight:700">${member?.name||'—'}</div>
+        <div style="font-size:13px;opacity:.85">மொத்த சேமிப்பு: <strong>${fmt(total)}</strong> &nbsp;|&nbsp; ${mSav.length} பதிவுகள்</div>
+      </div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>தேதி</th><th>தொகை ₹</th><th>ஓட்டுமொத்தம்</th><th>விடு பணம்</th><th>அபராதம்</th><th>செயல்</th></tr></thead>
+      <tbody>${rows.join('')||'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px">சேமிப்பு பதிவுகள் இல்லை</td></tr>'}</tbody>
+      <tfoot><tr class="tr-total"><td colspan="2">மொத்தம்</td><td style="color:var(--green);font-weight:700">${fmt(total)}</td><td></td><td></td><td></td></tr></tfoot>
+    </table></div>`;
+  openModal('savingsDetailModal');
+}
+
+// Clear helpers
+async function clearMSav(gid, mid, date) {
+  if (!confirm('இந்த சேமிப்பை நீக்கவா?')) return;
+  const d=groupDataCache[gid];
+  d.savings=d.savings.filter(s=>!(s.memberId===mid&&s.date===date));
+  await saveGD(gid); renderMeeting(gid); showToast('நீக்கப்பட்டது','info');
+}
+async function clearMSangRep(gid, mid, date) {
+  if (!confirm('இந்த கடன் தவணையை நீக்கவா?')) return;
+  const d=groupDataCache[gid];
+  d.repayments=d.repayments.filter(r=>!(r.memberId===mid&&r.date===date));
+  await saveGD(gid); renderMeeting(gid); showToast('நீக்கப்பட்டது','info');
+}
+async function clearMSpRep(gid, mid, date) {
+  if (!confirm('இந்த சிறப்பு கடன் தவணையை நீக்கவா?')) return;
+  const d=groupDataCache[gid];
+  d.spRepayments=d.spRepayments.filter(r=>!(r.memberId===mid&&r.date===date));
+  await saveGD(gid); renderMeeting(gid); showToast('நீக்கப்பட்டது','info');
+}
+
+
+
+// ===== BANK ACCOUNT TAB =====
+function renderBankAccount(gid) {
+  const d = groupDataCache[gid], g = currentGroup;
+
+  // கூட்ட சுருக்கத்தில் வங்கிக்கு சென்ற தொகை மொத்தம்
+  const meetingBankDeps = (d.meetingSummary||[]).reduce((a,x) => a + Number(x.bankAmt||0), 0);
+
+  // பழைய mode-based savings (backward compat)
+  const savingsBankDeps = (d.savings||[]).filter(s => s.mode === 'bank' || s.mode === 'bank_then_loan').reduce((a,s) => a + Number(s.amount), 0);
+
+  // மொத்த வங்கி வரவு = meeting summary bankAmt (புதிய முறை) OR savings mode (பழைய முறை)
+  const bankDeps = meetingBankDeps > 0 ? meetingBankDeps : savingsBankDeps;
+
+  const bankWithdraw = (d.internalLoans||[]).filter(l => l.type === 'from_bank').reduce((a,l) => a + Number(l.amount), 0);
+  const bankInt = (d.bankInterest||[]).reduce((a,x) => a + Number(x.amount), 0);
+  const bankBal = (g.openingBalance||0) + bankDeps + bankInt - bankWithdraw;
+
+  // கூட்ட தேதிவாரியான வங்கி entry list
+  const meetBankRows = (d.meetingSummary||[])
+    .filter(x => Number(x.bankAmt||0) > 0)
+    .sort((a,b) => b.date.localeCompare(a.date))
+    .map(x => `<tr>
+      <td>${x.date}</td>
+      <td style="color:var(--green);font-weight:700">${fmt(x.bankAmt)}</td>
+      <td style="color:${Number(x.loanAmt||0)>0?'var(--orange)':'var(--muted)'}">${Number(x.loanAmt||0)>0?fmt(x.loanAmt):'—'}</td>
+      <td style="color:${Number(x.cashHeld||0)>0?'var(--blue)':'var(--muted)'}">${Number(x.cashHeld||0)>0?fmt(x.cashHeld):'—'}</td>
+      <td style="color:var(--muted);font-size:11px">${x.note||'—'}</td>
+    </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px">பதிவுகள் இல்லை</td></tr>';
+
+  document.getElementById('tab-bankaccount').innerHTML = `
+    <div class="card">
+      <div class="card-title">🏦 வங்கி கணக்கு விவரம்</div>
+      <div class="g2">
+        <div>
+          <div class="acc-row acc-neutral"><span>வங்கி பெயர்</span><strong>${g.bankname||'—'}</strong></div>
+          <div class="acc-row acc-neutral"><span>கணக்கு எண்</span><strong>${g.bankno||'—'}</strong></div>
+          <div class="acc-row acc-income"><span>ஆரம்ப இருப்பு</span><strong style="color:var(--green)">${fmt(g.openingBalance||0)}</strong></div>
+        </div>
+        <div>
+          <div class="acc-row acc-income"><span>கூட்டங்களில் வங்கிக்கு சென்றது</span><strong style="color:var(--green)">${fmt(bankDeps)}</strong></div>
+          <div class="acc-row acc-income"><span>வட்டி வருமானம்</span><strong style="color:var(--green)">${fmt(bankInt)}</strong></div>
+          <div class="acc-row acc-expense"><span>வங்கியில் இருந்து எடுத்த கடன்</span><strong style="color:var(--red)">${fmt(bankWithdraw)}</strong></div>
+        </div>
+      </div>
+      <div class="balance-box"><div style="font-size:12px;opacity:.85;margin-bottom:3px">🏦 வங்கி இருப்பு தொகை</div><div style="font-size:32px;font-weight:700">${fmt(bankBal)}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 கூட்டம்வாரியான வங்கி Entry</div>
+      <div class="tw"><table>
+        <thead><tr><th>தேதி</th><th>வங்கிக்கு சென்றது ₹</th><th>நேரடி கடன் ₹</th><th>கையிருப்பு ₹</th><th>குறிப்பு</th></tr></thead>
+        <tbody>${meetBankRows}</tbody>
+        <tfoot><tr class="tr-total">
+          <td>மொத்தம்</td>
+          <td style="color:var(--green)">${fmt(meetingBankDeps)}</td>
+          <td>${fmt((d.meetingSummary||[]).reduce((a,x)=>a+Number(x.loanAmt||0),0))}</td>
+          <td>${fmt((d.meetingSummary||[]).reduce((a,x)=>a+Number(x.cashHeld||0),0))}</td>
+          <td></td>
+        </tr></tfoot>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">💹 வங்கி வட்டி வருமானம்</div>
+        <button class="btn btn-rose" onclick="openModal('addBankIntModal')">+ வட்டி சேர்</button>
+      </div>
+      <div class="tw"><table><thead><tr><th>தேதி</th><th>தொகை ₹</th><th>குறிப்பு</th></tr></thead>
+      <tbody>${[...(d.bankInterest||[])].reverse().map(x => `<tr><td>${x.date}</td><td style="color:var(--green);font-weight:700">${fmt(x.amount)}</td><td>${x.note||'—'}</td></tr>`).join('')||'<tr><td colspan="3" style="text-align:center;color:var(--muted);padding:20px">பதிவுகள் இல்லை</td></tr>'}</tbody>
+      </table></div>
+    </div>`;
+}
+async function addBankInterest() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const amount = document.getElementById('bi_amount').value;
+  if (!amount) { showToast('தொகை கட்டாயம்!', 'error'); return; }
+  d.bankInterest.push({ id: uid(), date: document.getElementById('bi_date').value, amount: Number(amount), note: document.getElementById('bi_note').value });
+  await saveGD(gid); closeModal('addBankIntModal');
+  document.getElementById('bi_amount').value = ''; document.getElementById('bi_note').value = '';
+  renderBankAccount(gid); showToast('வட்டி பதிவு செய்யப்பட்டது! 💹');
+}
+
+// ===== MEMBERS =====
+function renderMembers(gid) {
+  const d = groupDataCache[gid];
+  document.getElementById('tab-members').innerHTML = `
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">👩 உறுப்பினர்கள் (${(d.members||[]).length}/20)</div>
+        <button class="btn btn-rose" onclick="openAddMember()">+ புதிய உறுப்பினர்</button>
+      </div>
+      <div class="tw"><table><thead><tr><th>#</th><th>பெயர்</th><th>தொலைபேசி</th><th>சேர்ந்த தேதி</th><th>சேமிப்பு ₹</th><th>கடன் நிலுவை ₹</th><th>செயல்</th></tr></thead>
+      <tbody>${(d.members||[]).length ? (d.members||[]).map((m,i) => {
+        const ts = (d.savings||[]).filter(s=>s.memberId===m.id).reduce((a,s)=>a+Number(s.amount),0);
+        const tbl = (d.internalLoans||[]).filter(l=>l.memberId===m.id).reduce((a,l)=>{ const r=getLR(gid,l.id); return a+Math.max(0,l.amount-r.principal); }, 0);
+        return `<tr>
+          <td>${i+1}</td>
+          <td><strong style="cursor:pointer;color:var(--rose);text-decoration:underline" onclick="showMemberProfile('${gid}','${m.id}')">${m.name}</strong></td>
+          <td>${m.phone}</td><td>${m.date||'—'}</td>
+          <td style="color:var(--green);font-weight:700">${fmt(ts)}</td>
+          <td style="color:${tbl>0?'var(--red)':'var(--green)'};font-weight:700">${fmt(tbl)}</td>
+          <td><div class="flex-row"><button class="btn-sm-b" onclick="showMemberProfile('${gid}','${m.id}')">விவரம்</button><button class="btn-sm" onclick="openEditMember('${gid}','${m.id}')">திருத்து</button></div></td>
+        </tr>`;
+      }).join('') : '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px">உறுப்பினர்கள் இல்லை</td></tr>'}</tbody>
+      </table></div>
+    </div>`;
+}
+function openAddMember() { openModal('addMemberModal'); }
+async function addMember() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const name = document.getElementById('m_name').value.trim(), phone = document.getElementById('m_phone').value.trim();
+  if (!name || !phone) { showToast('பெயர் & தொலைபேசி கட்டாயம்!', 'error'); return; }
+  if ((d.members||[]).length >= 20) { showToast('அதிகபட்சம் 20 உறுப்பினர்கள்!', 'error'); return; }
+  d.members.push({ id: uid(), name, phone,
+    date:       document.getElementById('m_date').value,
+    dob:        document.getElementById('m_dob').value,
+    address:    document.getElementById('m_address').value.trim(),
+    aadhar:     document.getElementById('m_aadhar').value.trim(),
+    bank:       document.getElementById('m_bank').value.trim(),
+  });
+  await saveGD(gid); closeModal('addMemberModal');
+  ['m_name','m_phone','m_date','m_dob','m_address','m_aadhar','m_bank'].forEach(id => document.getElementById(id).value = '');
+  renderDash(gid); showToast('உறுப்பினர் சேர்க்கப்பட்டார்! 🎉');
+}
+function openEditMember(gid, mid) {
+  const d = groupDataCache[gid], m = d.members.find(x => x.id === mid);
+  if (!m) return;
+  document.getElementById('em_id').value = mid;
+  document.getElementById('em_gid').value = gid;
+  document.getElementById('em_name').value = m.name||'';
+  document.getElementById('em_phone').value = m.phone||'';
+  document.getElementById('em_date').value = m.date||'';
+  document.getElementById('em_dob').value = m.dob||'';
+  document.getElementById('em_address').value = m.address||'';
+  document.getElementById('em_aadhar').value = m.aadhar||'';
+  document.getElementById('em_bank').value = m.bank||'';
+  openModal('editMemberModal');
+}
+async function updateMember() {
+  const gid = document.getElementById('em_gid').value || currentGroup.id;
+  const d = groupDataCache[gid];
+  const mid = document.getElementById('em_id').value;
+  const idx = d.members.findIndex(m => m.id === mid);
+  if (idx < 0) return;
+  const name = document.getElementById('em_name').value.trim();
+  if (!name) { showToast('பெயர் கட்டாயம்!', 'error'); return; }
+  d.members[idx] = {
+    ...d.members[idx],
+    name,
+    phone:       document.getElementById('em_phone').value.trim(),
+    date:        document.getElementById('em_date').value,
+    dob:         document.getElementById('em_dob').value,
+    address:     document.getElementById('em_address').value.trim(),
+    aadhar:      document.getElementById('em_aadhar').value.trim(),
+    bank:        document.getElementById('em_bank').value.trim(),
+  };
+  await saveGD(gid);
+  closeModal('editMemberModal');
+  renderDash(gid);
+  showToast('உறுப்பினர் திருத்தப்பட்டார்! ✅');
+}
+
+// ===== MEMBER PROFILE MODAL =====
+function showMemberProfile(gid, mid) {
+  const d = groupDataCache[gid], member = d.members.find(m => m.id === mid);
+  if (!member) return;
+  const mSav = (d.savings||[]).filter(s => s.memberId === mid);
+  const mIL = (d.internalLoans||[]).filter(l => l.memberId === mid);
+  const mBL = (d.bankLoans||[]).filter(l => l.memberId === mid);
+  const ts = mSav.reduce((a,s) => a + Number(s.amount), 0);
+  const mFine = mSav.reduce((a,s)=>a+Number(s.fine||0),0) + (d.repayments||[]).filter(r=>r.memberId===mid).reduce((a,r)=>a+Number(r.fine||0),0);
+  const mSub  = mSav.reduce((a,s)=>a+Number(s.sub||0),0)  + (d.repayments||[]).filter(r=>r.memberId===mid).reduce((a,r)=>a+Number(r.sub||0),0);
+  let iT=0,iR=0,iI=0,iB=0; mIL.forEach(l => { const r=getLR(gid,l.id); iT+=Number(l.amount); iR+=r.principal; iI+=r.interest; iB+=Math.max(0,l.amount-r.principal); });
+  let bT=0,bR=0,bI=0,bB=0; mBL.forEach(l => { const r=getLR(gid,l.id,'bank'); bT+=Number(l.amount); bR+=r.principal; bI+=r.interest; bB+=Math.max(0,l.amount-r.principal); });
+
+  // Group savings by month
+  const monthMap = {};
+  mSav.forEach(s => {
+    const mo = s.date ? s.date.slice(0,7) : 'தெரியாத';
+    if (!monthMap[mo]) monthMap[mo] = [];
+    monthMap[mo].push(s);
+  });
+
+  document.getElementById('memberProfileContent').innerHTML = `
+    <div class="mem-profile">
+      <div class="mem-avatar">👩</div>
+      <div>
+        <div style="font-family:'Noto Serif Tamil',serif;font-size:20px;font-weight:700">${member.name}</div>
+        <div style="font-size:12px;opacity:.85">📞 ${member.phone}</div>
+        <div style="font-size:12px;opacity:.85">📅 சேர்ந்த தேதி: ${member.date||'—'}</div>
+        ${member.address ? `<div style="font-size:12px;opacity:.85">🏠 ${member.address}</div>` : ''}
+      </div>
+    </div>
+    <div class="ldg-stats" style="margin-bottom:14px">
+      ${[['மொத்த சேமிப்பு',fmt(ts),'var(--green)'],['உள் கடன்',fmt(iT),'var(--blue)'],['திரும்பியது',fmt(iR),'var(--green)'],['நிலுவை (உள்)',fmt(iB),'var(--red)'],['வட்டி செலுத்தியது',fmt(iI),'var(--gold)'],['அபராதம் செலுத்தியது',fmt(mFine),'var(--purple)'],['சந்தா செலுத்தியது',fmt(mSub),'var(--teal)'],['வங்கி கடன்',fmt(bT),'var(--rose)'],['வங்கி நிலுவை',fmt(bB),'var(--red)']].map(([l,v,c])=>`<div class="ls"><div style="font-size:16px;font-weight:700;color:${c}">${v}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${l}</div></div>`).join('')}
+    </div>
+
+    <!-- Monthly Savings -->
+    <div class="card">
+      <div class="card-title">💰 மாதாந்திர சேமிப்பு விவரம்</div>
+      ${Object.keys(monthMap).sort().reverse().map(mo => `
+        <div style="background:var(--green-bg);border-radius:8px;padding:10px;margin-bottom:8px;">
+          <div style="font-weight:700;color:var(--green);margin-bottom:6px">📅 ${mo}</div>
+          ${monthMap[mo].map(s => `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);">
+              <div><span class="badge" style="background:#fff;color:var(--blue)">${s.installment}</span> &nbsp; ${s.date}</div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <strong style="color:var(--green)">${fmt(s.amount)}</strong>
+                ${s.short>0?`<span class="badge" style="background:var(--red-bg);color:var(--red)">விடு: ${fmt(s.short)}</span>`:''}
+                ${Number(s.fine||0)>0?`<span class="badge" style="background:var(--purple-bg);color:var(--purple)">Fine: ${fmt(s.fine)}</span>`:''}
+                ${Number(s.sub||0)>0?`<span class="badge" style="background:var(--teal-bg);color:var(--teal)">சந்தா: ${fmt(s.sub)}</span>`:''}
+                <button class="btn-sm" onclick="openEditSav('${gid}','${s.id}')">திருத்து</button>
+              </div>
+            </div>`).join('')}
+          <div style="text-align:right;font-weight:700;color:var(--green);margin-top:4px">மொத்தம்: ${fmt(monthMap[mo].reduce((a,s)=>a+Number(s.amount),0))}</div>
+        </div>`).join('') || '<div style="color:var(--muted);padding:10px">சேமிப்பு பதிவுகள் இல்லை</div>'}
+    </div>
+
+    <!-- Internal Loans -->
+    <div class="card">
+      <div class="card-title">🤝 உள் கடன் விவரம்</div>
+      <div class="tw"><table><thead><tr><th>தேதி</th><th>கடன் ₹</th><th>வகை</th><th>வட்டி%</th><th>செலுத்தியது</th><th>நிலுவை</th><th>வட்டி ₹</th><th>நிலை</th><th>செயல்</th></tr></thead>
+      <tbody>${mIL.map(l => {
+        const rep=getLR(gid,l.id), bal=Math.max(0,l.amount-rep.principal);
+        const typeLabel = l.type==='from_bank'?'🏦 வங்கி':'💵 நேரடி';
+        return `<tr><td>${l.date}</td><td style="color:var(--blue);font-weight:700">${fmt(l.amount)}</td><td>${typeLabel}</td><td>${l.interest}%</td><td style="color:var(--green)">${fmt(rep.principal)}</td><td style="color:${bal>0?'var(--red)':'var(--green)'};font-weight:700">${fmt(bal)}</td><td style="color:var(--gold)">${fmt(rep.interest)}</td><td><span class="badge" style="background:${bal<=0?'var(--green-bg)':'var(--orange-bg)'};color:${bal<=0?'var(--green)':'var(--orange)'}">${bal<=0?'முடிந்தது':'நடப்பில்'}</span></td><td><button class="btn-sm" onclick="openEditILoan('${gid}','${l.id}')">திருத்து</button></td></tr>`;
+      }).join('')||'<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:20px">கடன் பதிவுகள் இல்லை</td></tr>'}
+      ${mIL.length?`<tr class="tr-total"><td colspan="3">மொத்தம்</td><td></td><td>${fmt(iR)}</td><td>${fmt(iB)}</td><td>${fmt(iI)}</td><td></td><td></td></tr>`:''}</tbody></table></div>
+    </div>
+
+    <!-- Repayments for this member -->
+    <div class="card">
+      <div class="card-title">💳 தவணை விவரம்</div>
+      <div class="tw"><table><thead><tr><th>தேதி</th><th>மொத்தம் ₹</th><th>அசல் ₹</th><th>வட்டி ₹</th><th>விடு பணம் ₹</th><th>செயல்</th></tr></thead>
+      <tbody>${(d.repayments||[]).filter(r=>r.memberId===mid).map(r=>`<tr><td>${r.date}</td><td style="font-weight:700">${fmt(r.amount)}</td><td style="color:var(--blue)">${fmt(r.principal)}</td><td style="color:var(--gold)">${fmt(r.interest)}</td><td style="color:${Number(r.short||0)>0?'var(--red)':'var(--muted)'}">${fmt(r.short||0)}</td><td><button class="btn-sm" onclick="openEditIRepay('${gid}','${r.id}')">திருத்து</button></td></tr>`).join('')||'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px">தவணை பதிவுகள் இல்லை</td></tr>'}</tbody></table></div>
+    </div>`;
+
+  openModal('memberProfileModal');
+}
+
+// ===== SAVINGS =====
+function renderSavings(gid) {
+  const d = groupDataCache[gid];
+  const members = d.members || [];
+  const grandTotal = (d.savings||[]).reduce((a,s)=>a+Number(s.amount),0);
+
+  const memberRows = members.map((m,i) => {
+    const mSavings = (d.savings||[]).filter(s=>s.memberId===m.id);
+    const total = mSavings.reduce((a,s)=>a+Number(s.amount),0);
+    return `<tr onclick="showSavingsDetail('${gid}','${m.id}')" style="cursor:pointer;" onmouseover="this.style.background='#fce4ec'" onmouseout="this.style.background=''">
+      <td style="font-weight:700;text-align:center">${i+1}</td>
+      <td>
+        <strong style="color:var(--rose2)">${m.name}</strong>
+        <div style="font-size:10px;color:var(--muted)">${mSavings.length} பதிவுகள் • தொடு விவரம் காண</div>
+      </td>
+      <td style="text-align:right;font-size:18px;font-weight:700;color:${total>0?'var(--green)':'var(--muted)'}">
+        ${fmt(total)}
+      </td>
+    </tr>`;
+  });
+
+  document.getElementById('tab-savings').innerHTML = `
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">📒 சேமிப்பு பேரடு</div>
+        <button class="btn btn-rose" onclick="openAddSavings()">+ சேமிப்பு சேர்</button>
+      </div>
+
+      <!-- Grand total banner -->
+      <div style="background:linear-gradient(135deg,#880E4F,#C2185B);border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="color:rgba(255,255,255,0.85);font-size:13px;">குழு மொத்த சேமிப்பு</div>
+        <div style="color:#fff;font-size:28px;font-weight:700">${fmt(grandTotal)}</div>
+      </div>
+
+      <!-- Member ledger list -->
+      ${members.length ? `
+      <div class="tw">
+        <table>
+          <thead>
+            <tr style="background:linear-gradient(135deg,#880E4F,#C2185B)">
+              <th style="width:40px">#</th>
+              <th>பெயர்</th>
+              <th style="text-align:right">மொத்த சேமிப்பு ₹</th>
+            </tr>
+          </thead>
+          <tbody>${memberRows.join('')}</tbody>
+          <tfoot>
+            <tr class="tr-total">
+              <td colspan="2">மொத்தம்</td>
+              <td style="text-align:right;font-size:16px;color:var(--green)">${fmt(grandTotal)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px;">👆 பெயரை தொட்டால் நாள்வாரியான கணக்கு காட்டும்</div>
+      ` : '<div style="text-align:center;color:var(--muted);padding:40px">உறுப்பினர்கள் இல்லை</div>'}
+    </div>`;
+}
+function openAddSavings() { popMem(currentGroup.id,'s_member'); openModal('addSavingsModal'); }
+async function addSavings() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('s_member').value, amount = document.getElementById('s_amount').value;
+  if (!mid || !amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!', 'error'); return; }
+  d.savings.push({ id: uid(), memberId: mid, date: document.getElementById('s_date').value, amount: Number(amount), mode: document.getElementById('s_mode').value, short: Number(document.getElementById('s_short').value||0), fine: Number(document.getElementById('s_fine').value||0), sub: Number(document.getElementById('s_sub').value||0), extraDesc: document.getElementById('s_extra_desc').value, note: document.getElementById('s_note').value });
+  await saveGD(gid); closeModal('addSavingsModal');
+  ['s_amount','s_note','s_short','s_fine','s_sub','s_extra_desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('s_short').value = '0';
+  renderSavings(gid); showToast('சேமிப்பு பதிவு செய்யப்பட்டது! 💰');
+}
+function openEditSav(gid, sid) {
+  const d = groupDataCache[gid], s = (d.savings||[]).find(x => x.id === sid);
+  if (!s) return;
+  closeModal('memberProfileModal');
+  closeModal('savingsDetailModal');
+  popMem(gid,'esav_member');
+  document.getElementById('esav_id').value = sid;
+  document.getElementById('esav_member').value = s.memberId;
+  document.getElementById('esav_date').value = s.date||'';
+  document.getElementById('esav_amount').value = s.amount;
+  document.getElementById('esav_short').value = s.short||0;
+  document.getElementById('esav_fine').value = s.fine||0;
+  document.getElementById('esav_sub').value = s.sub||0;
+  document.getElementById('esav_extra_desc').value = s.extraDesc||'';
+  document.getElementById('esav_note').value = s.note||'';
+  openModal('editSavingsModal');
+}
+async function updateSavings() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const sid = document.getElementById('esav_id').value;
+  const idx = (d.savings||[]).findIndex(s => s.id === sid);
+  if (idx < 0) return;
+  d.savings[idx] = { ...d.savings[idx], memberId: document.getElementById('esav_member').value, date: document.getElementById('esav_date').value, amount: Number(document.getElementById('esav_amount').value), mode: document.getElementById('esav_mode').value, short: Number(document.getElementById('esav_short').value||0), fine: Number(document.getElementById('esav_fine').value||0), sub: Number(document.getElementById('esav_sub').value||0), extraDesc: document.getElementById('esav_extra_desc').value, note: document.getElementById('esav_note').value };
+  await saveGD(gid); closeModal('editSavingsModal'); renderSavings(gid); showToast('சேமிப்பு திருத்தப்பட்டது! ✅');
+}
+
+// ===== LOANS LEDGER (combined view) =====
+function renderLoansLedger(gid) {
+  const d = groupDataCache[gid];
+  const members = d.members || [];
+
+  function getLoanSummary(mid) {
+    // சங்க கடன்
+    let sangTotal=0, sangPaid=0, sangInt=0;
+    (d.internalLoans||[]).filter(l=>l.memberId===mid).forEach(l=>{
+      sangTotal += Number(l.amount);
+      const reps = (d.repayments||[]).filter(r=>r.loanId===l.id);
+      sangPaid  += reps.reduce((a,r)=>a+Number(r.principal||0),0);
+      sangInt   += reps.reduce((a,r)=>a+Number(r.interest||0),0);
+    });
+    const sangBal = Math.max(0, sangTotal - sangPaid);
+
+    // சிறப்பு கடன்
+    let spTotal=0, spPaid=0, spInt=0;
+    (d.spLoans||[]).filter(l=>l.memberId===mid).forEach(l=>{
+      spTotal += Number(l.amount);
+      const reps = (d.spRepayments||[]).filter(r=>r.loanId===l.id);
+      spPaid  += reps.reduce((a,r)=>a+Number(r.principal||0),0);
+      spInt   += reps.reduce((a,r)=>a+Number(r.interest||0),0);
+    });
+    const spBal = Math.max(0, spTotal - spPaid);
+
+    return { sangTotal, sangPaid, sangBal, sangInt, spTotal, spPaid, spBal, spInt,
+             totalBal: sangBal + spBal, totalInt: sangInt + spInt };
+  }
+
+  // grand totals
+  let gSangTotal=0, gSangPaid=0, gSangBal=0, gSangInt=0;
+  let gSpTotal=0,   gSpPaid=0,   gSpBal=0,   gSpInt=0;
+  members.forEach(m=>{
+    const s = getLoanSummary(m.id);
+    gSangTotal+=s.sangTotal; gSangPaid+=s.sangPaid; gSangBal+=s.sangBal; gSangInt+=s.sangInt;
+    gSpTotal  +=s.spTotal;   gSpPaid  +=s.spPaid;   gSpBal  +=s.spBal;   gSpInt  +=s.spInt;
+  });
+  const gTotal     = gSangTotal + gSpTotal;
+  const gTotalPaid = gSangPaid  + gSpPaid;
+  const gTotalBal  = gSangBal   + gSpBal;
+
+  const rows = members.map((m,i)=>{
+    const s = getLoanSummary(m.id);
+    const hasLoan = s.sangTotal>0 || s.spTotal>0;
+    return `<tr onclick="showLoanDetail('${gid}','${m.id}')" style="cursor:pointer;${!hasLoan?'opacity:0.4':''}" onmouseover="this.style.background='#fce4ec'" onmouseout="this.style.background=''">
+      <td style="text-align:center;font-weight:700">${i+1}</td>
+      <td><strong style="color:var(--rose2)">${m.name}</strong>
+        <div style="font-size:10px;color:var(--muted)">${hasLoan?'தொடு விவரம் காண':'கடன் இல்லை'}</div>
+      </td>
+      <td style="text-align:right;color:var(--blue);font-weight:700">${s.sangTotal>0?fmt(s.sangPaid):'—'}</td>
+      <td style="text-align:right;color:var(--gold);font-weight:700">${s.sangTotal>0?fmt(s.sangInt):'—'}</td>
+      <td style="text-align:right;font-weight:700;color:${s.sangBal>0?'var(--red)':'var(--green)'}">${s.sangTotal>0?fmt(s.sangBal):'—'}</td>
+      <td style="text-align:right;color:var(--purple);font-weight:700">${s.spTotal>0?fmt(s.spPaid):'—'}</td>
+      <td style="text-align:right;color:var(--gold);font-weight:700">${s.spTotal>0?fmt(s.spInt):'—'}</td>
+      <td style="text-align:right;font-weight:700;color:${s.spBal>0?'var(--red)':'var(--green)'}">${s.spTotal>0?fmt(s.spBal):'—'}</td>
+    </tr>`;
+  });
+
+  document.getElementById('tab-loans').innerHTML = `
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">💳 கடன் பேரடு</div>
+        <div class="flex-row">
+          <button class="btn btn-rose" onclick="openAddILoan()">+ சங்க கடன் வழங்கு</button>
+          <button class="btn" style="background:var(--purple);color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer;" onclick="openAddSpLoan()">+ சிறப்பு கடன் வழங்கு</button>
+        </div>
+      </div>
+
+      <!-- Summary boxes -->
+      <div style="background:linear-gradient(135deg,#880E4F,#C2185B);border-radius:12px;padding:14px 18px;margin-bottom:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="text-align:center;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.75);margin-bottom:4px;">கொடுத்தது</div>
+          <div style="font-size:18px;font-weight:700;color:#fff">${fmt(gTotal)}</div>
+        </div>
+        <div style="text-align:center;border-left:1px solid rgba(255,255,255,0.3);">
+          <div style="font-size:11px;color:rgba(255,255,255,0.75);margin-bottom:4px;">வசூல் அசல்</div>
+          <div style="font-size:18px;font-weight:700;color:#a5d6a7">${fmt(gTotalPaid)}</div>
+        </div>
+        <div style="text-align:center;border-left:1px solid rgba(255,255,255,0.3);">
+          <div style="font-size:11px;color:rgba(255,255,255,0.75);margin-bottom:4px;">வட்டி வசூல்</div>
+          <div style="font-size:18px;font-weight:700;color:#ffe082">${fmt(gSangInt+gSpInt)}</div>
+        </div>
+        <div style="text-align:center;border-left:1px solid rgba(255,255,255,0.3);">
+          <div style="font-size:11px;color:rgba(255,255,255,0.75);margin-bottom:4px;">நிலுவை</div>
+          <div style="font-size:18px;font-weight:700;color:#ffcdd2">${fmt(gTotalBal)}</div>
+        </div>
+      </div>
+
+      ${members.length ? `
+      <div class="tw">
+        <table>
+          <thead>
+            <tr style="background:linear-gradient(135deg,#880E4F,#C2185B)">
+              <th rowspan="2">#</th>
+              <th rowspan="2">பெயர்</th>
+              <th colspan="3" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">🤝 சங்க கடன்</th>
+              <th colspan="3" style="text-align:center;border-left:2px solid rgba(255,255,255,0.3)">⭐ சிறப்பு கடன்</th>
+            </tr>
+            <tr style="background:#A01545">
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">அசல் ₹</th>
+              <th style="text-align:right">வட்டி ₹</th>
+              <th style="text-align:right">நிலுவை ₹</th>
+              <th style="text-align:right;border-left:2px solid rgba(255,255,255,0.3)">அசல் ₹</th>
+              <th style="text-align:right">வட்டி ₹</th>
+              <th style="text-align:right">நிலுவை ₹</th>
+            </tr>
+          </thead>
+          <tbody>${rows.join('')}</tbody>
+          <tfoot>
+            <tr class="tr-total">
+              <td colspan="2">மொத்தம்</td>
+              <td style="text-align:right">${fmt(members.reduce((a,m)=>a+getLoanSummary(m.id).sangPaid,0))}</td>
+              <td style="text-align:right;color:var(--gold)">${fmt(gSangInt)}</td>
+              <td style="text-align:right;color:var(--red)">${fmt(gSangBal)}</td>
+              <td style="text-align:right">${fmt(members.reduce((a,m)=>a+getLoanSummary(m.id).spPaid,0))}</td>
+              <td style="text-align:right;color:var(--gold)">${fmt(gSpInt)}</td>
+              <td style="text-align:right;color:var(--red)">${fmt(gSpBal)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px;">👆 பெயரை தொட்டால் நாள்வாரியான கடன் கணக்கு காட்டும்</div>
+      ` : '<div style="text-align:center;color:var(--muted);padding:40px">உறுப்பினர்கள் இல்லை</div>'}
+    </div>`;
+}
+
+function showLoanDetail(gid, mid) {
+  const d = groupDataCache[gid];
+  const member = (d.members||[]).find(m=>m.id===mid);
+
+  // சங்க கடன் rows
+  const sangRows = (d.internalLoans||[]).filter(l=>l.memberId===mid).map(l=>{
+    const reps = (d.repayments||[]).filter(r=>r.loanId===l.id).sort((a,b)=>a.date.localeCompare(b.date));
+    const paid = reps.reduce((a,r)=>a+Number(r.principal||0),0);
+    const intPaid = reps.reduce((a,r)=>a+Number(r.interest||0),0);
+    const bal  = Math.max(0, l.amount - paid);
+    const loanRow = `<tr style="background:#fff3e0">
+      <td colspan="5"><strong style="color:var(--orange)">📅 கடன் வழங்கிய தேதி: ${l.date} — ₹${fmt(l.amount)} (வட்டி: ${l.interest}%)</strong></td>
+      <td><button class="btn-sm" onclick="openEditILoan('${gid}','${l.id}')">திருத்து</button></td>
+    </tr>`;
+    const repRows = reps.map(r=>`<tr>
+      <td style="padding-left:20px">${r.date}</td>
+      <td style="color:var(--blue);text-align:right">${fmt(r.principal||0)}</td>
+      <td style="color:var(--gold);text-align:right">${fmt(r.interest||0)}</td>
+      <td style="color:${Number(r.short||0)>0?'var(--red)':'var(--muted)'};text-align:right">${Number(r.short||0)>0?fmt(r.short):'—'}</td>
+      <td style="color:${Number(r.fine||0)>0?'var(--purple)':'var(--muted)'};text-align:right">${Number(r.fine||0)>0?fmt(r.fine):'—'}</td>
+      <td><button class="btn-sm" onclick="openEditIRepay('${gid}','${r.id}')">திருத்து</button></td>
+    </tr>`).join('');
+    const sumRow = `<tr style="background:#e8f5e9;font-weight:700">
+      <td style="padding-left:20px">நிலுவை</td>
+      <td style="color:${bal>0?'var(--red)':'var(--green)'};text-align:right">${fmt(bal)}</td>
+      <td style="color:var(--gold);text-align:right">${fmt(intPaid)}</td>
+      <td colspan="3"></td>
+    </tr>`;
+    return loanRow + repRows + sumRow;
+  }).join('');
+
+  // சிறப்பு கடன் rows
+  const spRows = (d.spLoans||[]).filter(l=>l.memberId===mid).map(l=>{
+    const reps = (d.spRepayments||[]).filter(r=>r.loanId===l.id).sort((a,b)=>a.date.localeCompare(b.date));
+    const paid = reps.reduce((a,r)=>a+Number(r.principal||0),0);
+    const intPaid = reps.reduce((a,r)=>a+Number(r.interest||0),0);
+    const bal  = Math.max(0, l.amount - paid);
+    const loanRow = `<tr style="background:#f3e5f5">
+      <td colspan="5"><strong style="color:var(--purple)">⭐ சிறப்பு கடன்: ${l.date} — ₹${fmt(l.amount)} (${l.purpose||'—'})</strong></td>
+      <td></td>
+    </tr>`;
+    const repRows = reps.map(r=>`<tr>
+      <td style="padding-left:20px">${r.date}</td>
+      <td style="color:var(--blue);text-align:right">${fmt(r.principal||0)}</td>
+      <td style="color:var(--gold);text-align:right">${fmt(r.interest||0)}</td>
+      <td style="color:${Number(r.short||0)>0?'var(--red)':'var(--muted)'};text-align:right">${Number(r.short||0)>0?fmt(r.short):'—'}</td>
+      <td style="color:${Number(r.fine||0)>0?'var(--purple)':'var(--muted)'};text-align:right">${Number(r.fine||0)>0?fmt(r.fine):'—'}</td>
+      <td><button class="btn-sm" onclick="openEditSpRepay('${gid}','${r.id}')">திருத்து</button></td>
+    </tr>`).join('');
+    const sumRow = `<tr style="background:#e8f5e9;font-weight:700">
+      <td style="padding-left:20px">நிலுவை</td>
+      <td style="color:${bal>0?'var(--red)':'var(--green)'};text-align:right">${fmt(bal)}</td>
+      <td style="color:var(--gold);text-align:right">${fmt(intPaid)}</td>
+      <td colspan="3"></td>
+    </tr>`;
+    return loanRow + repRows + sumRow;
+  }).join('');
+
+  const noLoans = !sangRows && !spRows;
+
+  document.getElementById('loanDetailContent').innerHTML = `
+    <div style="background:linear-gradient(135deg,#880E4F,#C2185B);color:#fff;border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;">👩</div>
+      <div><div style="font-size:16px;font-weight:700">${member?.name||'—'}</div></div>
+    </div>
+    ${noLoans ? '<div style="text-align:center;color:var(--muted);padding:30px">கடன் பதிவுகள் இல்லை</div>' : `
+    <div class="tw"><table>
+      <thead><tr style="background:linear-gradient(135deg,#880E4F,#C2185B)">
+        <th>தேதி</th><th style="text-align:right">அசல் ₹</th><th style="text-align:right">வட்டி ₹</th><th style="text-align:right">விடு பணம்</th><th style="text-align:right">அபராதம்</th><th>செயல்</th>
+      </tr></thead>
+      <tbody>
+        ${sangRows ? `<tr style="background:#880E4F"><td colspan="6" style="color:#fff;font-weight:700;padding:8px 12px">🤝 சங்க கடன்</td></tr>${sangRows}` : ''}
+        ${spRows   ? `<tr style="background:#6A1B9A"><td colspan="6" style="color:#fff;font-weight:700;padding:8px 12px">⭐ சிறப்பு கடன்</td></tr>${spRows}` : ''}
+      </tbody>
+    </table></div>`}`;
+  openModal('loanDetailModal');
+}
+
+// ===== INTERNAL LOANS =====
+function renderILoans(gid) { /* unused - data shown in renderLoansLedger */ }
+
+function openAddILoan() { popMem(currentGroup.id,'il_member'); openModal('addILoanModal'); }
+function openAddIRepay() { popMem(currentGroup.id,'ir_member'); openModal('addIRepayModal'); }
+async function addILoan() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('il_member').value, amount = document.getElementById('il_amount').value;
+  if (!mid || !amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!', 'error'); return; }
+  d.internalLoans.push({ id: uid(), memberId: mid, date: document.getElementById('il_date').value, amount: Number(amount), interest: Number(document.getElementById('il_interest').value||2), type: document.getElementById('il_type').value, months: Number(document.getElementById('il_months').value||0), purpose: document.getElementById('il_purpose').value });
+  await saveGD(gid); closeModal('addILoanModal'); renderLoansLedger(gid); showToast('கடன் பதிவு செய்யப்பட்டது! 🤝');
+}
+function openEditILoan(gid, lid) {
+  const d = groupDataCache[gid], l = (d.internalLoans||[]).find(x => x.id === lid);
+  if (!l) return;
+  closeModal('memberProfileModal');
+  popMem(gid,'eil_member');
+  document.getElementById('eil_id').value = lid;
+  document.getElementById('eil_member').value = l.memberId;
+  document.getElementById('eil_date').value = l.date||'';
+  document.getElementById('eil_amount').value = l.amount;
+  document.getElementById('eil_interest').value = l.interest;
+  document.getElementById('eil_type').value = l.type||'direct';
+  document.getElementById('eil_purpose').value = l.purpose||'';
+  openModal('editILoanModal');
+}
+async function updateILoan() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const lid = document.getElementById('eil_id').value;
+  const idx = (d.internalLoans||[]).findIndex(l => l.id === lid);
+  if (idx < 0) return;
+  d.internalLoans[idx] = { ...d.internalLoans[idx], memberId: document.getElementById('eil_member').value, date: document.getElementById('eil_date').value, amount: Number(document.getElementById('eil_amount').value), interest: Number(document.getElementById('eil_interest').value), type: document.getElementById('eil_type').value, purpose: document.getElementById('eil_purpose').value };
+  await saveGD(gid); closeModal('editILoanModal'); renderLoansLedger(gid); showToast('கடன் திருத்தப்பட்டது! ✅');
+}
+function loadILoansForRepay() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('ir_member').value;
+  const loans = (d.internalLoans||[]).filter(l => l.memberId === mid);
+  document.getElementById('ir_loan').innerHTML = loans.map(l => `<option value="${l.id}">${fmt(l.amount)} — ${l.date}</option>`).join('') || '<option>கடன் இல்லை</option>';
+}
+async function addIRepay() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('ir_member').value, lid = document.getElementById('ir_loan').value, amount = document.getElementById('ir_amount').value;
+  if (!mid || !lid || !amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!', 'error'); return; }
+  d.repayments.push({ id: uid(), memberId: mid, loanId: lid, date: document.getElementById('ir_date').value, amount: Number(amount), interest: Number(document.getElementById('ir_interest').value||0), principal: Number(document.getElementById('ir_principal').value||0), short: Number(document.getElementById('ir_short').value||0), fine: Number(document.getElementById('ir_fine').value||0), sub: Number(document.getElementById('ir_sub').value||0), extraDesc: document.getElementById('ir_extra_desc').value });
+  await saveGD(gid); closeModal('addIRepayModal'); renderLoansLedger(gid); showToast('தவணை பதிவு செய்யப்பட்டது! ✅');
+}
+function openEditIRepay(gid, rid) {
+  const d = groupDataCache[gid], r = (d.repayments||[]).find(x => x.id === rid);
+  if (!r) return;
+  closeModal('memberProfileModal');
+  // populate member dropdown
+  popMem(gid, 'eir_member');
+  document.getElementById('eir_id').value = rid;
+  document.getElementById('eir_gid').value = gid;
+  document.getElementById('eir_member').value = r.memberId||'';
+  // populate loans for this member
+  const loans = (d.internalLoans||[]).filter(l => l.memberId === r.memberId);
+  document.getElementById('eir_loan').innerHTML = loans.map(l=>`<option value="${l.id}" ${l.id===r.loanId?'selected':''}>${fmt(l.amount)} — ${l.date}</option>`).join('')||'<option value="">கடன் இல்லை</option>';
+  document.getElementById('eir_date').value = r.date||'';
+  document.getElementById('eir_amount').value = r.amount;
+  document.getElementById('eir_interest').value = r.interest||0;
+  document.getElementById('eir_principal').value = r.principal||0;
+  document.getElementById('eir_short').value = r.short||0;
+  document.getElementById('eir_fine').value = r.fine||0;
+  document.getElementById('eir_sub').value = r.sub||0;
+  document.getElementById('eir_extra_desc').value = r.extraDesc||'';
+  document.getElementById('eir_extra_desc').value = r.extraDesc||'';
+  // update loans when member changes
+  document.getElementById('eir_member').onchange = function() {
+    const mid = this.value;
+    const ls = (d.internalLoans||[]).filter(l => l.memberId === mid);
+    document.getElementById('eir_loan').innerHTML = ls.map(l=>`<option value="${l.id}">${fmt(l.amount)} — ${l.date}</option>`).join('')||'<option value="">கடன் இல்லை</option>';
+  };
+  openModal('editIRepayModal');
+  // Show delete button only for admin
+  document.getElementById('irepayDelBtn').innerHTML = (currentUser && currentUser.role === 'admin')
+    ? '<button class="btn" style="background:var(--red);color:#fff;" onclick="deleteIRepay()">🗑️ Delete</button>' : '';
+}
+async function updateIRepay() {
+  const gid = document.getElementById('eir_gid').value || currentGroup.id;
+  const d = groupDataCache[gid];
+  const rid = document.getElementById('eir_id').value;
+  const idx = (d.repayments||[]).findIndex(r => r.id === rid);
+  if (idx < 0) return;
+  d.repayments[idx] = { ...d.repayments[idx],
+    memberId: document.getElementById('eir_member').value,
+    loanId: document.getElementById('eir_loan').value,
+    date: document.getElementById('eir_date').value,
+    amount: Number(document.getElementById('eir_amount').value),
+    interest: Number(document.getElementById('eir_interest').value||0),
+    principal: Number(document.getElementById('eir_principal').value||0),
+    short: Number(document.getElementById('eir_short').value||0),
+    fine: Number(document.getElementById('eir_fine').value||0),
+    sub: Number(document.getElementById('eir_sub').value||0),
+    extraDesc: document.getElementById('eir_extra_desc').value
+  };
+  await saveGD(gid); closeModal('editIRepayModal'); renderLoansLedger(gid); showToast('தவணை திருத்தப்பட்டது! ✅');
+}
+async function deleteIRepay() {
+  if (!confirm('இந்த தவணை பதிவை நிரந்தரமாக Delete செய்வீர்களா?')) return;
+  const gid = document.getElementById('eir_gid').value || currentGroup.id;
+  const d = groupDataCache[gid];
+  const rid = document.getElementById('eir_id').value;
+  d.repayments = (d.repayments||[]).filter(r => r.id !== rid);
+  await saveGD(gid); closeModal('editIRepayModal'); renderLoansLedger(gid); showToast('தவணை பதிவு Delete செய்யப்பட்டது! 🗑️', 'info');
+}
+
+// ===== BANK LOANS =====
+function renderBLoans(gid) {
+  const d = groupDataCache[gid];
+
+  // Totals
+  const totalGiven   = (d.bankLoans||[]).reduce((a,l)=>a+Number(l.amount),0);
+  const totalPrincipal = (d.bankRepayments||[]).reduce((a,r)=>a+Number(r.principal||0),0);
+  const totalInterest  = (d.bankRepayments||[]).reduce((a,r)=>a+Number(r.interest||0),0);
+  const totalBal     = Math.max(0, totalGiven - totalPrincipal);
+
+  document.getElementById('tab-bloans').innerHTML = `
+    <div class="card">
+      <div class="flex-between">
+        <div class="card-title">🏦 வங்கி கடன்</div>
+        <button class="btn btn-rose" onclick="openAddBLoan()">+ வங்கி கடன் சேர்</button>
+      </div>
+
+      <!-- Summary -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+        <div style="background:var(--blue-bg);border-radius:10px;padding:12px;border-left:4px solid var(--blue);text-align:center;">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">🏦 கடன் கொடுத்தது</div>
+          <div style="font-size:20px;font-weight:700;color:var(--blue)">${fmt(totalGiven)}</div>
+        </div>
+        <div style="background:var(--green-bg);border-radius:10px;padding:12px;border-left:4px solid var(--green);text-align:center;">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">✅ வசூல் அசல்</div>
+          <div style="font-size:20px;font-weight:700;color:var(--green)">${fmt(totalPrincipal)}</div>
+        </div>
+        <div style="background:var(--orange-bg,#fff3e0);border-radius:10px;padding:12px;border-left:4px solid var(--gold);text-align:center;">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">💹 மொத்த வட்டி</div>
+          <div style="font-size:20px;font-weight:700;color:var(--gold)">${fmt(totalInterest)}</div>
+        </div>
+        <div style="background:var(--red-bg,#ffebee);border-radius:10px;padding:12px;border-left:4px solid var(--red);text-align:center;">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">⏳ நிலுவை</div>
+          <div style="font-size:20px;font-weight:700;color:var(--red)">${fmt(totalBal)}</div>
+        </div>
+      </div>
+
+      <div class="tw"><table><thead><tr><th>தேதி</th><th>உறுப்பினர்</th><th>வங்கி</th><th>கடன் ₹</th><th>வட்டி%</th><th>செலுத்தியது</th><th>நிலுவை</th><th>நிலை</th></tr></thead>
+      <tbody>${[...(d.bankLoans||[])].reverse().map(l => {
+        const rep=getLR(gid,l.id,'bank'), bal=Math.max(0,l.amount-rep.principal);
+        return `<tr><td>${l.date}</td><td><strong>${getMN(gid,l.memberId)}</strong></td><td>${l.bank}</td><td style="color:var(--blue);font-weight:700">${fmt(l.amount)}</td><td>${l.interest}%</td><td style="color:var(--green)">${fmt(rep.principal)}</td><td style="color:${bal>0?'var(--red)':'var(--green)'};font-weight:700">${fmt(bal)}</td><td><span class="badge" style="background:${bal<=0?'var(--green-bg)':'var(--orange-bg)'};color:${bal<=0?'var(--green)':'var(--orange)'}">${bal<=0?'முடிந்தது':'நடப்பில்'}</span></td></tr>`;
+      }).join('')||'<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:30px">வங்கி கடன் பதிவுகள் இல்லை</td></tr>'}</tbody>
+      </table></div>
+    </div>`;
+}
+function openAddBLoan() { popMem(currentGroup.id,'bl_member'); openModal('addBLoanModal'); }
+function openAddBRepay() { popMem(currentGroup.id,'br_member'); openModal('addBRepayModal'); }
+async function addBLoan() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('bl_member').value, amount = document.getElementById('bl_amount').value;
+  if (!mid || !amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!', 'error'); return; }
+  d.bankLoans.push({ id: uid(), memberId: mid, date: document.getElementById('bl_date').value, bank: document.getElementById('bl_bank').value, amount: Number(amount), interest: Number(document.getElementById('bl_interest').value||0), months: Number(document.getElementById('bl_months').value||0), purpose: document.getElementById('bl_purpose').value });
+  await saveGD(gid); closeModal('addBLoanModal'); renderBLoans(gid); showToast('வங்கி கடன் பதிவு செய்யப்பட்டது! 🏦');
+}
+function loadBLoansForRepay() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('br_member').value;
+  const loans = (d.bankLoans||[]).filter(l => l.memberId === mid);
+  document.getElementById('br_loan').innerHTML = loans.map(l => `<option value="${l.id}">${l.bank} ${fmt(l.amount)} — ${l.date}</option>`).join('') || '<option>கடன் இல்லை</option>';
+}
+async function addBRepay() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const mid = document.getElementById('br_member').value, lid = document.getElementById('br_loan').value, amount = document.getElementById('br_amount').value;
+  if (!mid || !lid || !amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!', 'error'); return; }
+  d.bankRepayments.push({ id: uid(), memberId: mid, loanId: lid, date: document.getElementById('br_date').value, amount: Number(amount), interest: Number(document.getElementById('br_interest').value||0), principal: Number(document.getElementById('br_principal').value||0) });
+  await saveGD(gid); closeModal('addBRepayModal'); renderBLoans(gid); showToast('வங்கி தவணை பதிவு செய்யப்பட்டது! ✅');
+}
+
+// ===== ACCOUNTS =====
+function renderAccounts(gid) {
+  const d = groupDataCache[gid], g = currentGroup;
+  const ts = (d.savings||[]).reduce((a,s)=>a+Number(s.amount),0);
+  const ti = (d.repayments||[]).reduce((a,r)=>a+Number(r.interest||0),0) + (d.spRepayments||[]).reduce((a,r)=>a+Number(r.interest||0),0) + (d.bankRepayments||[]).reduce((a,r)=>a+Number(r.interest||0),0) + (d.bankInterest||[]).reduce((a,x)=>a+Number(x.amount),0);
+  const tr2 = (d.repayments||[]).reduce((a,r)=>a+Number(r.principal||0),0) + (d.spRepayments||[]).reduce((a,r)=>a+Number(r.principal||0),0);
+  const totalFine = (d.savings||[]).reduce((a,s)=>a+Number(s.fine||0),0) + (d.repayments||[]).reduce((a,r)=>a+Number(r.fine||0),0);
+  const totalSub  = (d.savings||[]).reduce((a,s)=>a+Number(s.sub||0),0)  + (d.repayments||[]).reduce((a,r)=>a+Number(r.sub||0),0);
+  const cfIncome  = (d.cashflow||[]).filter(c=>['extra','penalty','income'].includes(c.type)).reduce((a,c)=>a+Number(c.amount),0);
+  const cfExpense = (d.cashflow||[]).filter(c=>['lost','expense'].includes(c.type)).reduce((a,c)=>a+Number(c.amount),0);
+  const cfShort   = (d.cashflow||[]).filter(c=>c.type==='short').reduce((a,c)=>a+Number(c.amount),0);
+  const savShort  = (d.savings||[]).reduce((a,s)=>a+Number(s.short||0),0) + (d.repayments||[]).reduce((a,r)=>a+Number(r.short||0),0);
+
+  // கையிருப்பு — நாள் வசூல் entry-ல் மீத கையிருப்பு மொத்தம்
+  const cashInHand = (d.dailyDest||[]).reduce((a,x)=>a+Number(x.cashLeft||0),0);
+
+  // வங்கி closing balance
+  const bankDeposits   = (d.meetingSummary||[]).reduce((a,x)=>a+Number(x.bankAmt||0),0);
+  const bankIntIncome  = (d.bankInterest||[]).reduce((a,x)=>a+Number(x.amount),0);
+  const bankLoansGiven = (d.bankLoans||[]).reduce((a,l)=>a+Number(l.amount),0);
+  const bankLoanRepaid = (d.bankRepayments||[]).reduce((a,r)=>a+Number(r.principal||0),0);
+  const bankBalance    = (g.openingBalance||0) + bankDeposits + bankIntIncome - bankLoansGiven + bankLoanRepaid;
+
+  const totalIncome  = (g.openingBalance||0) + ts + ti + totalFine + totalSub + cfIncome;
+  const totalExpense = cfExpense + savShort + cfShort;
+  const netBalance   = totalIncome - totalExpense;
+
+  document.getElementById('tab-accounts').innerHTML = `
+    <div class="card">
+      <div class="card-title">📒 குழு வரவு செலவு கணக்கு</div>
+
+      <!-- வரவு / செலவு -->
+      <div class="g2">
+        <div>
+          <div style="font-weight:700;color:var(--green);padding:6px 0;border-bottom:1px solid var(--border);margin-bottom:8px">📈 வரவு (Income)</div>
+          <div class="acc-row acc-income"><span>ஆரம்ப இருப்பு</span><strong style="color:var(--green)">${fmt(g.openingBalance||0)}</strong></div>
+          <div class="acc-row acc-income"><span>💰 மொத்த சேமிப்பு</span><strong style="color:var(--green)">${fmt(ts)}</strong></div>
+          <div class="acc-row acc-income"><span>💹 வட்டி வருவாய்</span><strong style="color:var(--green)">${fmt(ti)}</strong></div>
+          ${totalFine>0?`<div class="acc-row acc-income"><span>⚡ அபராதம் வசூல்</span><strong style="color:var(--green)">${fmt(totalFine)}</strong></div>`:''}
+          ${totalSub>0?`<div class="acc-row acc-income"><span>🪪 சந்தா வசூல்</span><strong style="color:var(--green)">${fmt(totalSub)}</strong></div>`:''}
+          <div class="acc-row acc-income"><span>✅ எக்ஸ்ட்ரா / பிற வரவு</span><strong style="color:var(--green)">${fmt(cfIncome)}</strong></div>
+          <div class="acc-row acc-income" style="border-top:2px solid var(--green)"><span style="font-weight:700;font-size:14px">மொத்த வரவு</span><strong style="color:var(--green);font-size:16px">${fmt(totalIncome)}</strong></div>
+        </div>
+        <div>
+          <div style="font-weight:700;color:var(--red);padding:6px 0;border-bottom:1px solid var(--border);margin-bottom:8px">📉 செலவு (Expense)</div>
+          <div class="acc-row acc-warn"><span>💸 விடு பணம்</span><strong style="color:var(--orange)">${fmt(savShort+cfShort)}</strong></div>
+          <div class="acc-row acc-expense"><span>❌ தொலைந்த / பிற செலவு</span><strong style="color:var(--red)">${fmt(cfExpense)}</strong></div>
+          <div class="acc-row" style="background:var(--blue-bg);border-left:4px solid var(--blue)"><span>💵 கையிருப்பு</span><strong style="color:var(--blue)">${fmt(cashInHand)}</strong></div>
+          <div class="acc-row" style="background:var(--green-bg);border-left:4px solid var(--green)"><span>🏦 வங்கி இருப்பு</span><strong style="color:var(--green)">${fmt(bankBalance)}</strong></div>
+          <div class="acc-row acc-expense" style="border-top:2px solid var(--red)"><span style="font-weight:700;font-size:14px">மொத்த செலவு</span><strong style="color:var(--red);font-size:16px">${fmt(totalExpense)}</strong></div>
+        </div>
+      </div>
+
+      <!-- Net Balance -->
+      <div class="balance-box" style="margin-top:14px;">
+        <div style="font-size:12px;opacity:.85;margin-bottom:4px">💎 குழு நிதி இருப்பு · Net Balance</div>
+        <div style="font-size:34px;font-weight:700">${fmt(netBalance)}</div>
+        <div style="font-size:11px;opacity:.75;margin-top:4px">${fmt(totalIncome)} வரவு − ${fmt(totalExpense)} செலவு</div>
+      </div>
+
+      <!-- கையிருப்பு + வங்கி balance -->
+      <div class="g2" style="margin-top:14px;">
+        <div class="acc-row" style="background:var(--blue-bg);border-left:4px solid var(--blue);flex-direction:column;align-items:flex-start;gap:4px;padding:14px;">
+          <span style="font-size:12px;color:var(--muted)">💵 கையிருப்பு (Cash in Hand)</span>
+          <strong style="font-size:26px;color:var(--blue)">${fmt(cashInHand)}</strong>
+          <span style="font-size:11px;color:var(--muted)">நாள் வசூல் மீத கையிருப்பு மொத்தம்</span>
+        </div>
+        <div class="acc-row" style="background:var(--green-bg);border-left:4px solid var(--green);flex-direction:column;align-items:flex-start;gap:4px;padding:14px;">
+          <span style="font-size:12px;color:var(--muted)">🏦 வங்கி Closing Balance</span>
+          <strong style="font-size:26px;color:var(--green)">${fmt(bankBalance)}</strong>
+          <span style="font-size:11px;color:var(--muted)">ஆரம்பம் + deposits + வட்டி − கடன்</span>
+        </div>
+      </div>
+      <div class="acc-row" style="background:var(--rose-bg,#fce4ec);border-left:4px solid var(--rose2);flex-direction:column;align-items:flex-start;gap:4px;padding:14px;border-radius:10px;margin-top:10px;">
+        <span style="font-size:12px;color:var(--muted)">🏷️ மொத்த இருப்பு (வங்கி + கையிருப்பு)</span>
+        <strong style="font-size:28px;color:var(--rose2)">${fmt(bankBalance + cashInHand)}</strong>
+      </div>
+    </div>`;
+}
+
+// ===== SPECIAL LOANS =====
+function getLRSp(gid, lid) {
+  const d = groupDataCache[gid];
+  return (d.spRepayments||[]).filter(r=>r.loanId===lid).reduce((a,r)=>({total:a.total+Number(r.amount),interest:a.interest+Number(r.interest||0),principal:a.principal+Number(r.principal||0),short:a.short+Number(r.short||0)}),{total:0,interest:0,principal:0,short:0});
+}
+function renderSpLoans(gid) {
+  const d = groupDataCache[gid];
+  // unused - sploans tab removed, data shown in renderLoansLedger
+  return;
+}
+function openAddSpLoan() { popMem(currentGroup.id,'sl_member'); openModal('addSpLoanModal'); }
+function openAddSpRepay() { popMem(currentGroup.id,'sr_member'); openModal('addSpRepayModal'); }
+async function addSpLoan() {
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const mid=document.getElementById('sl_member').value, amount=document.getElementById('sl_amount').value;
+  if (!mid||!amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!','error'); return; }
+  d.spLoans.push({id:uid(),memberId:mid,date:document.getElementById('sl_date').value,amount:Number(amount),interest:Number(document.getElementById('sl_interest').value||2),months:Number(document.getElementById('sl_months').value||0),purpose:document.getElementById('sl_purpose').value});
+  await saveGD(gid); closeModal('addSpLoanModal'); renderLoansLedger(gid); showToast('சிறப்பு கடன் வழங்கப்பட்டது! ⭐');
+}
+function openEditSpLoan(gid,lid) {
+  const d=groupDataCache[gid], l=(d.spLoans||[]).find(x=>x.id===lid);
+  if (!l) return;
+  popMem(gid,'esl_member');
+  document.getElementById('esl_id').value=lid;
+  document.getElementById('esl_member').value=l.memberId;
+  document.getElementById('esl_date').value=l.date||'';
+  document.getElementById('esl_amount').value=l.amount;
+  document.getElementById('esl_interest').value=l.interest;
+  document.getElementById('esl_purpose').value=l.purpose||'';
+  openModal('editSpLoanModal');
+}
+async function updateSpLoan() {
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const lid=document.getElementById('esl_id').value;
+  const idx=(d.spLoans||[]).findIndex(l=>l.id===lid);
+  if (idx<0) return;
+  d.spLoans[idx]={...d.spLoans[idx],memberId:document.getElementById('esl_member').value,date:document.getElementById('esl_date').value,amount:Number(document.getElementById('esl_amount').value),interest:Number(document.getElementById('esl_interest').value),purpose:document.getElementById('esl_purpose').value};
+  await saveGD(gid); closeModal('editSpLoanModal'); renderLoansLedger(gid); showToast('சிறப்பு கடன் திருத்தப்பட்டது! ✅');
+}
+function loadSpLoansForRepay() {
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const mid=document.getElementById('sr_member').value;
+  const loans=(d.spLoans||[]).filter(l=>l.memberId===mid);
+  document.getElementById('sr_loan').innerHTML=loans.map(l=>`<option value="${l.id}">${fmt(l.amount)} — ${l.date} (${l.purpose||'சிறப்பு'})</option>`).join('')||'<option>கடன் இல்லை</option>';
+}
+async function addSpRepay() {
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const mid=document.getElementById('sr_member').value, lid=document.getElementById('sr_loan').value, amount=document.getElementById('sr_amount').value;
+  if (!mid||!lid||!amount) { showToast('அனைத்து தகவல்களும் கட்டாயம்!','error'); return; }
+  d.spRepayments.push({id:uid(),memberId:mid,loanId:lid,date:document.getElementById('sr_date').value,amount:Number(amount),interest:Number(document.getElementById('sr_interest').value||0),principal:Number(document.getElementById('sr_principal').value||0),short:Number(document.getElementById('sr_short').value||0),fine:Number(document.getElementById('sr_fine').value||0)});
+  await saveGD(gid); closeModal('addSpRepayModal'); renderLoansLedger(gid); showToast('சிறப்பு தவணை பதிவு செய்யப்பட்டது! ✅');
+}
+function openEditSpRepay(gid,rid) {
+  const d=groupDataCache[gid], r=(d.spRepayments||[]).find(x=>x.id===rid);
+  if (!r) return;
+  document.getElementById('esr_id').value=rid;
+  document.getElementById('esr_date').value=r.date||'';
+  document.getElementById('esr_amount').value=r.amount;
+  document.getElementById('esr_interest').value=r.interest||0;
+  document.getElementById('esr_principal').value=r.principal||0;
+  document.getElementById('esr_short').value=r.short||0;
+  document.getElementById('esr_fine').value=r.fine||0;
+  openModal('editSpRepayModal');
+  document.getElementById('sprepayDelBtn').innerHTML = (currentUser && currentUser.role === 'admin')
+    ? '<button class="btn" style="background:var(--red);color:#fff;" onclick="deleteSpRepay()">🗑️ Delete</button>' : '';
+}
+async function updateSpRepay() {
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const rid=document.getElementById('esr_id').value;
+  const idx=(d.spRepayments||[]).findIndex(r=>r.id===rid);
+  if (idx<0) return;
+  d.spRepayments[idx]={...d.spRepayments[idx],date:document.getElementById('esr_date').value,amount:Number(document.getElementById('esr_amount').value),interest:Number(document.getElementById('esr_interest').value||0),principal:Number(document.getElementById('esr_principal').value||0),short:Number(document.getElementById('esr_short').value||0),fine:Number(document.getElementById('esr_fine').value||0)};
+  await saveGD(gid); closeModal('editSpRepayModal'); renderLoansLedger(gid); showToast('சிறப்பு தவணை திருத்தப்பட்டது! ✅');
+}
+async function deleteSpRepay() {
+  if (!confirm('இந்த தவணை பதிவை Delete செய்வீர்களா?')) return;
+  const gid=currentGroup.id, d=groupDataCache[gid];
+  const rid=document.getElementById('esr_id').value;
+  d.spRepayments=(d.spRepayments||[]).filter(r=>r.id!==rid);
+  await saveGD(gid); closeModal('editSpRepayModal'); renderLoansLedger(gid); showToast('தவணை Delete செய்யப்பட்டது! 🗑️','info');
+}
+
+// ===== DAILY COLLECTION =====
+function renderDaily(gid) {
+  const d = groupDataCache[gid];
+  const dateSet = new Set([...(d.savings||[]).map(s=>s.date),...(d.repayments||[]).map(r=>r.date)]);
+  const allDates = [...dateSet].filter(Boolean).sort().reverse();
+
+  // Date filter from window state
+  const filterFrom = window._dailyFrom || '';
+  const filterTo   = window._dailyTo   || '';
+  const dates = allDates.filter(dt => {
+    if (filterFrom && dt < filterFrom) return false;
+    if (filterTo   && dt > filterTo)   return false;
+    return true;
+  });
+
+  const destLabel = {bank:'🏦 வங்கியில் செலுத்தப்பட்டது',loan_given:'🤝 கடனாக கொடுக்கப்பட்டது',bank_and_loan:'🏦+🤝 வங்கி & கடன்',cash_held:'💵 கையிருப்பு'};
+  const rows = dates.map(date => {
+    const daySav = (d.savings||[]).filter(s=>s.date===date);
+    const dayRep = (d.repayments||[]).filter(r=>r.date===date);
+    const savT = daySav.reduce((a,s)=>a+Number(s.amount),0);
+    const repT = dayRep.reduce((a,r)=>a+Number(r.amount),0);
+    const grand = savT+repT;
+    const dest = (d.dailyDest||[]).find(x=>x.date===date);
+    return `<div class="card" style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <div style="font-family:'Noto Serif Tamil',serif;font-size:15px;color:var(--rose2);font-weight:700;">📅 ${date}</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span style="background:var(--green-bg);color:var(--green);padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">மொத்தம்: ${fmt(grand)}</span>
+          <button class="btn-sm-b" onclick="openDailyDest('${gid}','${date}',${savT},${repT})">📝 ${dest?'திருத்து':'Entry சேர்'}</button>
+        </div>
+      </div>
+      <div class="g2" style="margin-bottom:10px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px;">💰 சேமிப்பு வசூல் (${daySav.length} பேர்)</div>
+          ${daySav.length?daySav.map(s=>`<div style="display:flex;justify-content:space-between;padding:5px 8px;background:var(--green-bg);border-radius:6px;margin-bottom:4px;font-size:12px;"><span>${getMN(gid,s.memberId)}</span><strong style="color:var(--green)">${fmt(s.amount)}${Number(s.short||0)>0?` <span style="color:var(--orange);font-size:10px">(விடு:${fmt(s.short)})</span>`:''}</strong></div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:6px">இல்லை</div>'}
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px;">💳 கடன் வசூல் (${dayRep.length} பேர்)</div>
+          ${dayRep.length?dayRep.map(r=>`<div style="display:flex;justify-content:space-between;padding:5px 8px;background:var(--blue-bg);border-radius:6px;margin-bottom:4px;font-size:12px;"><span>${getMN(gid,r.memberId)}</span><strong style="color:var(--blue)">${fmt(r.amount)}${Number(r.short||0)>0?` <span style="color:var(--orange);font-size:10px">(விடு:${fmt(r.short)})</span>`:''}</strong></div>`).join(''):'<div style="color:var(--muted);font-size:12px;padding:6px">இல்லை</div>'}
+        </div>
+      </div>
+      ${dest?`<div style="background:var(--green-bg);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px;">✅ பணம் எங்கே சென்றது</div>
+          ${dest.bankAmt>0?`<div style="font-size:12px;color:var(--green);">🏦 வங்கி: <strong>${fmt(dest.bankAmt)}</strong></div>`:''}
+          ${dest.loanAmt>0?`<div style="font-size:12px;color:var(--orange);">🤝 கடன்: <strong>${fmt(dest.loanAmt)}</strong></div>`:''}
+          ${dest.cashLeft>0?`<div style="font-size:12px;color:var(--blue);">💵 மீத கையிருப்பு: <strong>${fmt(dest.cashLeft)}</strong></div>`:''}
+          ${Number(dest.prevCashUsed||0)>0?`<div style="font-size:12px;color:var(--purple);">🔄 அடுத்த கூட்டத்தில் செலுத்தப்பட்டது: <strong>${fmt(dest.prevCashUsed)}</strong></div>`:''}
+          ${dest.note?`<div style="font-size:11px;color:var(--muted);margin-top:3px;">📝 ${dest.note}</div>`:''}
+        </div>
+        <div style="text-align:right;">
+          ${(()=>{
+            const prevUsed = Number(dest.prevCashUsed||0);
+            const acc = (dest.bankAmt||0)+(dest.loanAmt||0)+(dest.cashLeft||0)+prevUsed;
+            const diff = grand - acc;
+            if(Math.abs(diff)<=1) return '<span class="badge" style="background:#fff;color:var(--green);">✅ கணக்கு சரி</span>';
+            if(diff>0) return '<span class="badge" style="background:#fff3e0;color:var(--orange);">⚠️ ₹'+fmt(diff)+' கணக்கில் இல்லை</span>';
+            return '<span class="badge" style="background:#ffebee;color:var(--red);">⚠️ ₹'+fmt(Math.abs(diff))+' அதிகம்</span>';
+          })()}
+        </div>
+      </div>
+      `:`<div style="background:var(--red-bg);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--red);font-weight:700;">⚠️ இந்த நாள் பணம் எங்கே சென்றது என்று entry இல்லை!</div>`}
+    </div>`;
+  });
+  document.getElementById('tab-daily').innerHTML = `
+    <div class="card">
+      <div class="card-title">📅 நாள் வாரியான வசூல் கணக்கு</div>
+      <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-top:8px;">
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:3px;">தொடக்க தேதி</label>
+          <input type="date" id="daily_from" value="${filterFrom}" style="padding:6px 10px;border:1.5px solid var(--rose);border-radius:7px;font-size:13px;font-family:'Noto Sans Tamil',sans-serif;">
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:3px;">இறுதி தேதி</label>
+          <input type="date" id="daily_to" value="${filterTo}" style="padding:6px 10px;border:1.5px solid var(--rose);border-radius:7px;font-size:13px;font-family:'Noto Sans Tamil',sans-serif;">
+        </div>
+        <button class="btn btn-rose" onclick="applyDailyFilter('${gid}')">🔍 தேடு</button>
+        ${(filterFrom||filterTo)?`<button class="btn btn-outline" onclick="window._dailyFrom='';window._dailyTo='';renderDaily('${gid}')">✖ நீக்கு</button>`:''}
+      </div>
+      ${(filterFrom||filterTo)?`<div style="font-size:12px;color:var(--blue);margin-top:6px;">📊 ${dates.length} நாள் பதிவுகள் காட்டப்படுகின்றன</div>`:''}
+    </div>
+    ${rows.length?rows.join(''):'<div class="card" style="text-align:center;color:var(--muted);padding:40px;">தேர்ந்தெடுத்த தேதி வரம்பில் பதிவுகள் இல்லை</div>'}`;
+}
+function applyDailyFilter(gid) {
+  window._dailyFrom = document.getElementById('daily_from').value || '';
+  window._dailyTo   = document.getElementById('daily_to').value   || '';
+  renderDaily(gid);
+}
+function openDailyDest(gid, date, savAmt, repAmt) {
+  const d = groupDataCache[gid], existing = (d.dailyDest||[]).find(x=>x.date===date);
+  document.getElementById('dd_date').value = date;
+  document.getElementById('dd_dateShow').textContent = date;
+  document.getElementById('dd_savAmt').textContent = fmt(savAmt);
+  document.getElementById('dd_repAmt').textContent = fmt(repAmt);
+  document.getElementById('dd_totalAmt').textContent = fmt(savAmt+repAmt);
+  document.getElementById('dd_dest').value = existing?.dest||'bank';
+  document.getElementById('dd_bankAmt').value = existing?.bankAmt||'';
+  document.getElementById('dd_loanAmt').value = existing?.loanAmt||'';
+  document.getElementById('dd_cashLeft').value = existing?.cashLeft||'';
+  document.getElementById('dd_note').value = existing?.note||'';
+  document.getElementById('dd_balance_info').style.display = 'none';
+  // store total for balance calc
+  window._ddTotal = savAmt + repAmt;
+  openModal('addDailyDestModal');
+}
+
+function calcDailyBalance() {
+  const total = window._ddTotal || 0;
+  const bank  = Number(document.getElementById('dd_bankAmt').value||0);
+  const loan  = Number(document.getElementById('dd_loanAmt').value||0);
+  const cash  = Number(document.getElementById('dd_cashLeft').value||0);
+  const accounted = bank + loan + cash;
+  const diff = total - accounted;
+  const info = document.getElementById('dd_balance_info');
+  if (total > 0) {
+    info.style.display = 'block';
+    if (Math.abs(diff) <= 1) {
+      info.style.background = 'var(--green-bg)';
+      info.style.color = 'var(--green)';
+      info.textContent = '✅ கணக்கு சரியாக உள்ளது!';
+    } else if (diff > 0) {
+      info.style.background = 'var(--orange-bg)';
+      info.style.color = 'var(--orange)';
+      info.textContent = `⚠️ இன்னும் ₹${fmt(diff)} கணக்கில் சேர்க்கவில்லை`;
+    } else {
+      info.style.background = 'var(--red-bg)';
+      info.style.color = 'var(--red)';
+      info.textContent = `⚠️ ₹${fmt(Math.abs(diff))} அதிகமாக உள்ளது`;
+    }
+  }
+}
+
+async function saveDailyDest() {
+  const gid = currentGroup.id, d = groupDataCache[gid];
+  const date = document.getElementById('dd_date').value;
+  if (!d.dailyDest) d.dailyDest = [];
+  const idx = d.dailyDest.findIndex(x=>x.date===date);
+  const entry = {
+    date,
+    dest    : document.getElementById('dd_dest').value,
+    bankAmt : Number(document.getElementById('dd_bankAmt').value||0),
+    loanAmt : Number(document.getElementById('dd_loanAmt').value||0),
+    cashLeft: Number(document.getElementById('dd_cashLeft').value||0),
+    note    : document.getElementById('dd_note').value
+  };
+  if (idx>=0) d.dailyDest[idx]=entry; else d.dailyDest.push(entry);
+  await saveGD(gid); closeModal('addDailyDestModal'); renderDaily(gid); showToast('நாள் entry சேமிக்கப்பட்டது! ✅');
+}
+
+// ===== முன்கூட்ட கையிருப்பு APPLY =====
+function openApplyPrevCash(gid, date, totalAvail, currentApplied) {
+  document.getElementById('apc_gid').value  = gid;
+  document.getElementById('apc_date').value = date;
+  document.getElementById('apc_total_show').textContent = '₹' + fmt(totalAvail);
+  document.getElementById('apc_amount').value = currentApplied || '';
+  window._apcTotal = totalAvail;
+  const d = groupDataCache[gid];
+  const existing = (d.dailyDest||[]).find(x=>x.date===date);
+  document.getElementById('apc_dest').value = existing?.prevCashDest || 'bank';
+  document.getElementById('apc_note').value = existing?.prevCashNote || '';
+  document.getElementById('apc_balance_info').style.display = 'none';
+  openModal('applyPrevCashModal');
+}
+function calcApcBalance() {
+  const total   = window._apcTotal || 0;
+  const applied = Number(document.getElementById('apc_amount').value||0);
+  const remaining = total - applied;
+  const info = document.getElementById('apc_balance_info');
+  info.style.display = 'block';
+  if (applied > total) {
+    info.style.background = 'var(--red-bg)'; info.style.color = 'var(--red)';
+    info.textContent = `⚠️ கையிருப்பை விட அதிகமாக உள்ளது!`;
+  } else {
+    info.style.background = 'var(--green-bg)'; info.style.color = 'var(--green)';
+    info.textContent = `மீத கையிருப்பு: ₹${fmt(remaining)}`;
+  }
+}
+async function saveApplyPrevCash() {
+  const gid    = document.getElementById('apc_gid').value;
+  const date   = document.getElementById('apc_date').value;
+  const amount = Number(document.getElementById('apc_amount').value||0);
+  const dest   = document.getElementById('apc_dest').value;
+  const note   = document.getElementById('apc_note').value;
+  const total  = window._apcTotal || 0;
+  if (amount > total) { showToast('கையிருப்பை விட அதிகமாக உள்ளது!','error'); return; }
+  const d = groupDataCache[gid];
+  d.dailyDest = d.dailyDest || [];
+  const idx = d.dailyDest.findIndex(x=>x.date===date);
+  if (idx>=0) {
+    d.dailyDest[idx].appliedPrevCash = amount;
+    d.dailyDest[idx].prevCashDest    = dest;
+    d.dailyDest[idx].prevCashNote    = note;
+  } else {
+    d.dailyDest.push({date, appliedPrevCash:amount, prevCashDest:dest, prevCashNote:note, bankAmt:0, loanAmt:0, cashLeft:0});
+  }
+  // முன்கூட்ட cashLeft-ல் இருந்து கழிக்கவும் (பழையது முதல்) + prevCashUsed பதிவு செய்யவும்
+  let remaining = amount;
+  const prevEntries = d.dailyDest
+    .filter(x => x.date < date && Number(x.cashLeft||0) > 0)
+    .sort((a,b) => a.date.localeCompare(b.date));
+  for (const entry of prevEntries) {
+    if (remaining <= 0) break;
+    const deduct = Math.min(Number(entry.cashLeft), remaining);
+    entry.cashLeft    = Number(entry.cashLeft) - deduct;
+    entry.prevCashUsed = (Number(entry.prevCashUsed||0)) + deduct;
+    remaining -= deduct;
+  }
+  await saveGD(gid);
+  closeModal('applyPrevCashModal');
+  renderMeeting(gid);
+  showToast(`₹${fmt(amount)} முன்கையிருப்பிலிருந்து செலுத்தப்பட்டது! ✅`);
+}
+
+// ===== INIT =====
+// init will be called by Firebase script after it loads
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+(function() {
+  try {
+    const _app = firebase.apps.length
+      ? firebase.apps[0]
+      : firebase.initializeApp({
+          apiKey: "AIzaSyCWFSEub8_6jB1oTgb6hO-Mzv8ArhP7RFQ",
+          authDomain: "rwdf-ngo.firebaseapp.com",
+          projectId: "rwdf-ngo",
+          storageBucket: "rwdf-ngo.firebasestorage.app",
+          messagingSenderId: "848014370421",
+          appId: "1:848014370421:web:0b3519b58b38ed6f187a3c"
+        });
+    const _db = firebase.firestore();
+    window._useFallback = false;
+    window._fbGet    = async (col, id)       => { const s = await _db.collection(col).doc(id).get(); return s.exists ? s.data() : null; };
+    window._fbSet    = async (col, id, data) => { await _db.collection(col).doc(id).set(data); };
+    window._fbGetAll = async (col)           => { const s = await _db.collection(col).get(); return s.docs.map(d=>({id:d.id,...d.data()})); };
+    window._fbDelete = async (col, id)       => { await _db.collection(col).doc(id).delete(); };
+    console.log('✅ Firebase ready!');
+  } catch(e) {
+    console.warn('Firebase fallback:', e.message);
+    window._useFallback = true;
+  }
+  // DOM ready ஆனதும் init() call செய்யவும்
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  // Firebase status banner
+  setTimeout(() => {
+    const banner = document.getElementById('firebaseStatus');
+    if (banner) {
+      if (window._useFallback) {
+        banner.innerHTML = '⚠️ Firebase connected இல்லை — Internet சரிபாருங்கள் அல்லது Netlify-ல் host செய்யுங்கள்';
+        banner.style.display = 'block';
+        banner.style.background = '#FF6F00';
+        banner.style.color = '#fff';
+        banner.style.padding = '10px 16px';
+        banner.style.textAlign = 'center';
+        banner.style.fontSize = '13px';
+        banner.style.fontWeight = '700';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+  }, 500);
+})();
+</script>
+</body>
+</html>
